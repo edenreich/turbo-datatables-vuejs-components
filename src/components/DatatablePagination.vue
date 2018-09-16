@@ -16,9 +16,9 @@
                                                           :key="pagination.prevPage" 
                                                           :class="(pagination.currentPage === pagination.prevPage) ? 'active' : ''">
                         <a class="page-link" :href="'?page='+pagination.prevPage"
-                                                :data-dt-idx="pagination.prevPage"
-                                                :tabindex="pagination.prevPage"
-                                                @click.prevent="$emit('linkClicked', $event.target.getAttribute('tabindex'))">{{ pagination.prevPage }}</a>
+                                             :data-dt-idx="pagination.prevPage"
+                                             :tabindex="pagination.prevPage"
+                                             @click.prevent="$emit('linkClicked', $event.target.getAttribute('tabindex'))">{{ pagination.prevPage }}</a>
                     </li>
                     <li class="paginate_button page-item" v-if="pagination.totalPages > 10">
                         <span class="page-link">...</span>
@@ -27,18 +27,18 @@
                                                           :key="pagination.nextPage" 
                                                           :class="(pagination.currentPage === pagination.nextPage) ? 'active' : ''">
                         <a class="page-link" :href="'?page='+pagination.nextPage"
-                                                :data-dt-idx="pagination.nextPage"
-                                                :tabindex="pagination.nextPage"
-                                                @click.prevent="$emit('linkClicked', $event.target.getAttribute('tabindex'))">{{ pagination.nextPage }}</a>
+                                             :data-dt-idx="pagination.nextPage"
+                                             :tabindex="pagination.nextPage"
+                                             @click.prevent="$emit('linkClicked', $event.target.getAttribute('tabindex'))">{{ pagination.nextPage }}</a>
                     </li>
                     <li class="paginate_button page-item" v-if="pagination.totalPages <= 10"
-                                                            v-for="index in pagination.totalPages" 
-                                                            :key="index" 
-                                                            :class="(pagination.currentPage === index) ? 'active' : ''">
+                                                          v-for="index in pagination.totalPages" 
+                                                          :key="index" 
+                                                          :class="(pagination.currentPage === index) ? 'active' : ''">
                         <a class="page-link" :href="'?page='+index"
-                                                :data-dt-idx="index"
-                                                :tabindex="index"
-                                                @click.prevent="$emit('linkClicked', $event.target.getAttribute('tabindex'))">{{ index }}</a>
+                                             :data-dt-idx="index"
+                                             :tabindex="index"
+                                             @click.prevent="$emit('linkClicked', $event.target.getAttribute('tabindex'))">{{ index }}</a>
                     </li>
                     <li class="paginate_button page-item next">
                         <a class="page-link" :href="pagination.nextPageUrl" 
