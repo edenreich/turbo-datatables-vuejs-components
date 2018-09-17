@@ -10,7 +10,8 @@
           <datatable-body :records="records"></datatable-body>
           <datatable-footer :columns="columns"></datatable-footer>
       </datatable>
-      <datatable-pagination :pagination="pagination"
+      <datatable-pagination :short="pagination.totalPages > 10 ? true : false"
+                            :pagination="pagination"
                             @prev="requestData.page = arguments[0]"
                             @next="requestData.page = arguments[0]"
                             @linkClicked="requestData.page = arguments[0]">
