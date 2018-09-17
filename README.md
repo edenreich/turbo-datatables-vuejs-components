@@ -24,6 +24,6 @@ npm run demo-server
 
 ## Todo
 
-[x] Set config file where the user can put his database configurations.
-[x] Allow the users to hide columns.
-[x] Add action component to allow editing or creation of new records. 
+[ ] Set config file where the user can put his database configurations.
+[ ] Allow the users to hide columns.
+[ ] Add action component to allow editing or creation of new records. 
