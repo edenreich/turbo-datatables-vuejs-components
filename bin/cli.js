@@ -38,8 +38,8 @@ function demoServerRunner()
             console.error(err);
             process.exit(1);
         }
-
-        console.log(stdout);
+        
+        
     });
 }
 

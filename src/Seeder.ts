@@ -29,7 +29,7 @@ export class Seeder
 
         let sql = 'INSERT INTO test_peoples (name, email, phone) VALUES (?, ?, ?);';
         
-        for (let i = 1; i < this.records; i++) {
+        for (let i = 1; i <= this.records; i++) {
             var data = [faker.name.findName(), faker.internet.email(), faker.phone.phoneNumber()];
             await this.db.query(sql, data);
         }

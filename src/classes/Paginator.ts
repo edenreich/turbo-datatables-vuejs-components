@@ -43,6 +43,21 @@ export class Paginator
         return this.current;
     }
 
+    public getPerPage(): number
+    {
+        return this.perPage;
+    }
+
+    public getFrom(): number
+    {
+        return (this.getCurrent() - 1) * this.getPerPage() + 1;
+    }
+
+    public getTo(): number
+    {
+        return this.getFrom() + this.itemsCount() - 1;
+    }
+
     public getPagination(): object
     {
         return {
@@ -54,12 +69,19 @@ export class Paginator
             totalPages: this.getTotalPages(),
             lastPageUrl: `?page=${this.getTotalPages()}`,
             nextPageUrl: `?page=${this.getNext()}`,
-            prevPageUrl: `?page=${this.getPrev()}`
+            prevPageUrl: `?page=${this.getPrev()}`,
+            from: this.getFrom(),
+            to: this.getTo()
         };
     }
 
     public getItems(): Array<object>
     {
         return this.items;
+    }
+
+    public itemsCount(): number
+    {
+        return this.items.length;
     }
 }

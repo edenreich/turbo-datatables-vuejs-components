@@ -21,10 +21,11 @@ router.get('/people', async (ctx: any, next: any): Promise<any> => {
     let like = escape(inputs.search);
     let column = isNaN(inputs.column) ? columns[0] : columns[inputs.column];
     let page = parseInt(inputs.page);
-    let limit = parseInt(inputs.offset);
+    let limit = parseInt(inputs.limit);
+    let offset = limit * (page-1);
 
     // Execute the requested query.
-    let items = await db.query(`SELECT * FROM test_peoples WHERE ${column} LIKE '%${like}%' ORDER BY ${column} ${direction} LIMIT ${page}, ${limit}`);
+    let items = await db.query(`SELECT * FROM test_peoples WHERE ${column} LIKE '%${like}%' ORDER BY ${column} ${direction} LIMIT ${limit} OFFSET ${offset}`);
     let paginator = new Paginator(items, total, limit, page);
 
     ctx.body = {

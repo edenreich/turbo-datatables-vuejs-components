@@ -32,7 +32,7 @@ import _ from 'lodash';
         this.$emit('recordsFetched', response);
       });
 
-      this.$watch('data.offset', async (newValue) => {
+      this.$watch('data.limit', async (newValue) => {
         let response = await this.getRecords(this.url)
         this.$emit('recordsFetched', response);
       });

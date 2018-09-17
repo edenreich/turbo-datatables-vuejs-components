@@ -57,7 +57,7 @@ export default {
       requestData: {
         page: 1,
         draw: 0,
-        offset: 10,
+        limit: 10,
         search: '',
         column: 0,
         direction: 'desc'
@@ -71,13 +71,15 @@ export default {
         totalPages: null,
         lastPageUrl: '',
         nextPageUrl: '',
-        prevPageUrl: ''
+        prevPageUrl: '',
+        from: null,
+        to: null
       }
     }
   },
   methods: {
-    onPerPageChanged(offset) {
-      this.requestData.offset = offset;
+    onPerPageChanged(limit) {
+      this.requestData.limit = limit;
     },
     onSearch(term) {
       this.requestData.search = term;
