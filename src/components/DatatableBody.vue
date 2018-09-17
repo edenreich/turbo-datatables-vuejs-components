@@ -2,11 +2,9 @@
     <tbody>
         <tr role="row" 
             v-for="(record, index) in records" 
-            :key="record.id" 
+            :key="index" 
             :class="index % 2 === 0 ? 'even': 'odd'">
-            <td>{{ record.name }}</td>
-            <td>{{ record.email }}</td>
-            <td>{{ record.phone }}</td>
+            <td v-for="(column, index) in columns" :key="index">{{ record[column.name] }}</td>
         </tr>
     </tbody>
 </template>
@@ -14,8 +12,14 @@
 <script>
     export default {
         props: {
-            records: Array,
-            default: {}
+            records: {
+                type: Array,
+                default: {}
+            },
+            columns: {
+                type: Array,
+                default: {}
+            }
         }
     }
 </script>

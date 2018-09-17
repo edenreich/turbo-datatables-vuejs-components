@@ -7,7 +7,7 @@
       </datatable-header>
       <datatable url="http://localhost:3000/people" :data="requestData" @recordsFetched="onRecordsFetched">
           <datatable-head :columns="columns" @columnClicked="onColumnClicked"></datatable-head>
-          <datatable-body :records="records"></datatable-body>
+          <datatable-body :columns="columns" :records="records"></datatable-body>
           <datatable-footer :columns="columns"></datatable-footer>
       </datatable>
       <datatable-pagination :short="pagination.totalPages > 10 ? true : false"
@@ -43,8 +43,6 @@ export default {
     'datatable-pagination': DatatablePagination
   },
   data() {
-
-
     return {
       records: [],
       columns: [],

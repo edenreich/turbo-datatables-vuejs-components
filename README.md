@@ -6,6 +6,10 @@
 
 Reference: https://datatables.net/examples/styling/bootstrap4
 
+## Usage
+
+comming soon..
+
 ## Build
 
 Seed dummy data
@@ -17,3 +21,9 @@ Run demo server
 ```sh
 npm run demo-server
 ```
+
+## Todo
+
+[x] Set config file where the user can put his database configurations.
+[x] Allow the users to hide columns.
+[x] Add action component to allow editing or creation of new records. 
