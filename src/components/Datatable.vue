@@ -27,24 +27,30 @@ import _ from 'lodash';
       let response = await this.getRecords(this.url);
       this.$emit('recordsFetched', response);
 
-      this.$watch('data.page', async (newValue) => {
+      this.$watch('data.page', async (value) => {
         let response = await this.getRecords(this.url)
         this.$emit('recordsFetched', response);
       });
 
-      this.$watch('data.limit', async (newValue) => {
+      this.$watch('data.limit', async (value) => {
         let response = await this.getRecords(this.url)
         this.$emit('recordsFetched', response);
       });
 
       // Just so we won't over kill the server timeout for 
       // search typing is set to 500 miliseconds.
-      this.$watch('data.search', _.debounce(async (newValue) => {
-          let response = await this.getRecords(this.url);
+      this.$watch('data.search', _.debounce(async (value) => {
+        if (value === '') {
+          let response = await this.getRecords(this.url)
           this.$emit('recordsFetched', response);
+          return;
+        }
+
+        let response = await this.search(this.url);
+        this.$emit('recordsFetched', response);
       }, 500));
 
-      this.$watch('data.direction', async (newValue) => {
+      this.$watch('data.direction', async (value) => {
         let response = await this.getRecords(this.url);
         this.$emit('recordsFetched', response);
       });
@@ -52,6 +58,11 @@ import _ from 'lodash';
     methods: {
       async getRecords(url) {
         const response = await axios.get(url, { params: this.data });
+
+        return response.data;
+      },
+      async search(url) {
+        const response = await axios.get(url, { params: { search: this.data.search, column: this.data.column } })
 
         return response.data;
       }

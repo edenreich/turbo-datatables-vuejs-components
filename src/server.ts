@@ -12,23 +12,49 @@ router.get('/people', async (ctx: any, next: any): Promise<any> => {
     let db: Database = await Database.connect();
 
     let inputs = ctx.request.query;
-    let columns = ['name', 'email', 'phone'];
+    let columns = [
+        {
+            name: 'name',
+            width: '33%',
+            label: 'Name'
+        },
+        {
+            name: 'email',
+            width: '33%',
+            label: 'Email'
+        },
+        {
+            name: 'phone',
+            width: '33%',
+            label: 'Phone'
+        }
+    ];
+
     let direction = (inputs.direction === 'desc') ? 'desc': 'asc';
 
     let countResult = await db.query(`SELECT COUNT(*) as total FROM test_peoples`);
     let total = countResult[0].total;
    
-    let like = escape(inputs.search);
-    let column = isNaN(inputs.column) ? columns[0] : columns[inputs.column];
+    let search = escape(inputs.search);
+    let column = isNaN(inputs.column) ? columns[0].name : columns[inputs.column].name;
     let page = parseInt(inputs.page);
     let limit = parseInt(inputs.limit);
     let offset = limit * (page-1);
 
+    if (search) {
+        let items = await db.query(`SELECT * FROM test_peoples WHERE ${column} LIKE '%${search}%'`);
+        return ctx.body = {
+            columns: columns,
+            data: items
+        };
+    }
+
     // Execute the requested query.
-    let items = await db.query(`SELECT * FROM test_peoples WHERE ${column} LIKE '%${like}%' ORDER BY ${column} ${direction} LIMIT ${limit} OFFSET ${offset}`);
+    let items = await db.query(`SELECT * FROM test_peoples ORDER BY ${column} ${direction} LIMIT ${limit} OFFSET ${offset}`);
     let paginator = new Paginator(items, total, limit, page);
 
     ctx.body = {
+        columns: columns,
         pagination: paginator.getPagination(),
         data: paginator.getItems()
     };

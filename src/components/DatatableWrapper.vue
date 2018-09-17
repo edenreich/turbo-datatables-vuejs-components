@@ -43,17 +43,11 @@ export default {
     'datatable-pagination': DatatablePagination
   },
   data() {
-    let sortOrders = {};
 
-    let columns = [
-        { width: '33%', label: 'Name', name: 'name' },
-        { width: '33%', label: 'Email', name: 'email' },
-        { width: '33%', label: 'Phone', name: 'phone' },
-    ];
 
     return {
       records: [],
-      columns: columns,
+      columns: [],
       perPage: [ '10', '20', '30' ],
       requestData: {
         page: 1,
@@ -90,8 +84,9 @@ export default {
       this.requestData.column = column;
     },
     onRecordsFetched(response) {
+      this.columns = response.columns;
       this.records = response.data;
-      this.pagination = response.pagination;
+      this.pagination = response.pagination || {};
     }
   }
 }
