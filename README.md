@@ -1,4 +1,4 @@
-<p align="center"><img src="https://drive.google.com/uc?export=view&id=1llRW4SHz6jszcok9tlG2r4CJ2AQMJr5o"></p>
+<p align="center"><a href="https://datatables.net/examples/styling/bootstrap4"><img src="https://drive.google.com/uc?export=view&id=1BixUms5LUlR6-6TE3tPASyuTE1QtKLC_"></a></p>
 
 # Vue Datatables
 
@@ -15,5 +15,5 @@ Seed dummy data
 
 Run demo server
 ```sh
-./datatables run demo-server
+npm run demo-server
 ```
