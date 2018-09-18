@@ -43,14 +43,14 @@ Choose whatever component you need:
 
 ## Components Events
 
-| Component               | Events                         |
-| ----------------------- | ------------------------------ |
-| `<datatable-perpage/>`  | perPageChanged                 |
-| <datatable-search/>     | searching                      |
-| <datatable/>            | gettingRecords, recordsFetched |
-| <datatable-loader/>     | loading                        |
-| <datatable-head/>       | columnClicked                  |
-| <datatable-pagination/> | prev, next, linkClicked        |
+| Component                 | Events                         |
+| ------------------------- | ------------------------------ |
+| `<datatable-perpage/>`    | perPageChanged                 |
+| `<datatable-search/>`     | searching                      |
+| `<datatable/>`            | gettingRecords, recordsFetched |
+| `<datatable-loader/>`     | loading                        |
+| `<datatable-head/>`       | columnClicked                  |
+| `<datatable-pagination/>` | prev, next, linkClicked        |
 
 
 ## Build
