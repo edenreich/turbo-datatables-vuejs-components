@@ -5,7 +5,11 @@
         <datatable-perpage :perPage="perPage" @perPageChanged="onPerPageChanged"></datatable-perpage>
         <datatable-search @searching="onSearch"></datatable-search>
       </datatable-header>
-      <datatable url="http://localhost:3000/people" :data="requestData" @recordsFetched="onRecordsFetched">
+      <datatable url="http://localhost:3000/people" 
+                 :data="requestData"
+                 @gettingRecords="onGettingRecords"
+                 @recordsFetched="onRecordsFetched">
+          <datatable-loader :loading="loading"></datatable-loader>
           <datatable-head :columns="columns" @columnClicked="onColumnClicked"></datatable-head>
           <datatable-body :columns="columns" :records="records"></datatable-body>
           <datatable-footer :columns="columns"></datatable-footer>
@@ -25,6 +29,7 @@ import Datatable from './Datatable.vue';
 import DatatableHeader from './DatatableHeader.vue';
 import DatatableSearch from './DatatableSearch.vue';
 import DatatablePerPage from './DatatablePerPage.vue';
+import DatatableLoader from './DatatableLoader.vue';
 import DatatableHead from './DatatableHead.vue';
 import DatatableBody from './DatatableBody.vue';
 import DatatableFooter from './DatatableFooter.vue';
@@ -35,8 +40,9 @@ export default {
   components: {
     'datatable': Datatable,
     'datatable-header': DatatableHeader,
-    'datatable-perpage': DatatablePerPage,
     'datatable-search': DatatableSearch,
+    'datatable-perpage': DatatablePerPage,
+    'datatable-loader': DatatableLoader,
     'datatable-head': DatatableHead,
     'datatable-body': DatatableBody,
     'datatable-footer': DatatableFooter,
@@ -44,6 +50,7 @@ export default {
   },
   data() {
     return {
+      loading: true,
       records: [],
       columns: [],
       perPage: [ '10', '20', '30' ],
@@ -81,10 +88,14 @@ export default {
       this.requestData.direction = direction;
       this.requestData.column = column;
     },
+    onGettingRecords() {
+      this.loading = true;
+    },
     onRecordsFetched(response) {
       this.columns = response.columns;
       this.records = response.data;
       this.pagination = response.pagination || {};
+      this.loading = false;
     }
   }
 }

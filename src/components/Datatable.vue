@@ -57,11 +57,15 @@ import _ from 'lodash';
     },
     methods: {
       async getRecords(url) {
+        this.$emit('gettingRecords');
+
         const response = await axios.get(url, { params: this.data });
 
         return response.data;
       },
       async search(url) {
+        this.$emit('gettingRecords');
+
         const response = await axios.get(url, { params: { search: this.data.search, column: this.data.column } })
 
         return response.data;
