@@ -11,7 +11,8 @@ router.get('/people', async (ctx: any, next: any): Promise<any> => {
     
     let datatables = await Datatables;
 
-    datatables.of('test_peoples');
+    // datatables.of('test_peoples').only(['name', 'email']);
+    datatables.of('test_peoples').hide(['id', 'name']);
     datatables.setInputs(inputs);
 
     ctx.body = await datatables.make();

@@ -9,6 +9,10 @@ class Datatables
 
     private columns: Array<Column>;
 
+    private fetchableColumns: Array<string>;
+
+    private hiddenColumns: Array<string>;
+
     private table: string;
 
     private inputs: Options;
@@ -19,28 +23,50 @@ class Datatables
         this.inputs = {};
     }
 
-    public of(tableName: string): void
+    public of(tableName: string): Datatables
     {
         this.getColumnNames
 
         this.table = tableName;
+
+        return this;
+    }
+
+    public only(columns: Array<string>): void
+    {
+        this.fetchableColumns = columns;
+    }
+
+    public hide(columns: Array<string>): void
+    {
+        this.hiddenColumns = columns;
     }
 
     public async make(): Promise<object>
     {
         this.columns = await this.getColumnNames(this.table);
         let count = await this.getRecordsCount(this.table);
+        
+        if (this.fetchableColumns && this.fetchableColumns.length > 0) {
+            this.columns = this.columns.filter(column => this.fetchableColumns.indexOf(column.name) != -1);
+        }
+
+        if (this.hiddenColumns && this.hiddenColumns.length > 0) {
+            this.columns = this.columns.filter(column => this.hiddenColumns.indexOf(column.name) === -1);
+        }
+        
         let column = this.columns[this.inputs.columnIndex].name;
+        let columns = this.columns.map(column => column.name).join(',');
 
         if (this.inputs.search) {
-            let items = await this.db.query(`SELECT * FROM test_peoples WHERE ${column} LIKE '%${this.inputs.search}%'`);
+            let items = await this.db.query(`SELECT ${columns} FROM test_peoples WHERE ${column} LIKE '%${this.inputs.search}%'`);
             return {
                 columns: this.columns,
                 data: items
             };
         }
 
-        let items = await this.db.query(`SELECT * FROM test_peoples ORDER BY ${column} ${this.inputs.direction} LIMIT ${this.inputs.limit} OFFSET ${this.inputs.offset}`);
+        let items = await this.db.query(`SELECT ${columns} FROM test_peoples ORDER BY ${column} ${this.inputs.direction} LIMIT ${this.inputs.limit} OFFSET ${this.inputs.offset}`);
         let paginator = new Paginator(items, count, this.inputs.limit, this.inputs.page);
 
         return {
@@ -50,7 +76,7 @@ class Datatables
         };
     }
 
-    public setInputs(inputs: any)
+    public setInputs(inputs: any): void
     {
         this.inputs.direction = (inputs.direction === 'desc') ? 'desc': 'asc';
         this.inputs.search = escape(inputs.search);
