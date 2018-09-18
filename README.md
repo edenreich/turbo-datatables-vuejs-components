@@ -2,9 +2,17 @@
 
 # Vue Datatables
 
-> Server Side Processing Datatables written with Vuejs Framework. 
+> Server Side Processing Datatables written with Vuejs Framework.
 
 Reference: https://datatables.net/examples/styling/bootstrap4
+
+## The Problem
+
+> Rendering a table of over 5k records on the client-side will make the browser crush.
+
+## The Solution
+
+> By leveraging of server-side pagination we gain a preformance advantange.
 
 ## Usage
 
@@ -52,6 +60,10 @@ Choose whatever component you need:
 | `<datatable-head/>`       | columnClicked                  |
 | `<datatable-pagination/>` | prev, next, linkClicked        |
 
+
+## Server-Side
+
+Upcomming ...
 
 ## Build
 
