@@ -15,41 +15,40 @@
 </template>
 
 <script>
-    export default {
-        props: {
-            columns: {
-                type: Array,
-                required: true,
-            }
-        },
-        data() {
-            return {
-                active: 0,
-                dir: 'desc'
-            }
-        },
-        methods: {
-            onColumnClicked(event) {
-                let element = event.target;
-                let clicks = parseInt(element.getAttribute('clicks'));
-                element.setAttribute('clicks', clicks+1);
-
-                if (clicks % 2 === 1) {
-                    this.dir = 'desc';
-                } else {
-                    this.dir = 'asc';
-                }
-                
-                let columnIndex = parseInt(element.getAttribute('tabindex'));
-                let sortDirection = element.getAttribute('aria-sort');
-
-                this.active = columnIndex;
- 
-                this.$emit('columnClicked', columnIndex, this.dir);
-            }
+export default {
+    props: {
+        columns: {
+            type: Array,
+            required: true,
         }
+    },
+    data() {
+        return {
+            active: 0,
+            dir: 'desc'
+        }
+    },
+    methods: {
+        onColumnClicked(event) {
+            let element = event.target;
+            let clicks = parseInt(element.getAttribute('clicks'));
+            element.setAttribute('clicks', clicks+1);
 
+            if (clicks % 2 === 1) {
+                this.dir = 'desc';
+            } else {
+                this.dir = 'asc';
+            }
+            
+            let columnIndex = parseInt(element.getAttribute('tabindex'));
+            let sortDirection = element.getAttribute('aria-sort');
+
+            this.active = columnIndex;
+
+            this.$emit('columnClicked', columnIndex, this.dir);
+        }
     }
+}
 </script>
 
 <style>

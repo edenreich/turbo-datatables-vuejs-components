@@ -15,16 +15,16 @@
 </template>
 
 <script>
-    export default {
-        props: {
-            records: {
-                type: Array,
-                default: {}
-            },
-            columns: {
-                type: Array,
-                default: {}
-            }
+export default {
+    props: {
+        records: {
+            type: Array,
+            default: {}
+        },
+        columns: {
+            type: Array,
+            default: {}
         }
     }
+}
 </script>

@@ -12,15 +12,15 @@
 </template>
 
 <script>
-    export default {
-        props: {
-            loading: {
-                type: Boolean,
-                required: true,
-                default: true
-            },
-        }
+export default {
+    props: {
+        loading: {
+            type: Boolean,
+            required: true,
+            default: true
+        },
     }
+}
 </script>
 
 <style scoped>

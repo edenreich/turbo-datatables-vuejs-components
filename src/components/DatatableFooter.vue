@@ -7,14 +7,14 @@
 </template>
 
 <script>
-    export default {
-        props: {
-            columns: {
-                type: Array,
-                default: []
-            }
+export default {
+    props: {
+        columns: {
+            type: Array,
+            default: []
         }
     }
+}
 </script>
 
 <style>

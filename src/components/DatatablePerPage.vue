@@ -11,14 +11,14 @@
 </template>
 
 <script>
-    export default {
-        props: {
-            perPage: {
-                type: Array,
-                default: []
-            }
+export default {
+    props: {
+        perPage: {
+            type: Array,
+            default: []
         }
     }
+}
 </script>
 
 <style>

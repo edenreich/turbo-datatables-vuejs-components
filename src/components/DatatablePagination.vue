@@ -68,18 +68,18 @@
 </template>
 
 <script>
-    export default {
-        props: {
-           pagination: {
-               type: Object,
-               required: true
-           },
-           short: {
-               type: Boolean,
-               default: false
-           }
+export default {
+    props: {
+        pagination: {
+            type: Object,
+            required: true
+        },
+        short: {
+            type: Boolean,
+            default: false
         }
     }
+}
 </script>
 
 <style>
