@@ -63,7 +63,52 @@ Choose whatever component you need:
 
 ## Server-Side
 
-Upcomming ...
+> In general the datatable will make an ajax request to the given url and expects a JSON response in the following format:
+```javascript
+{
+  "columns": [
+    {
+      "name": "id",
+      "label": "#",
+      "width": "33%"
+    },
+    {
+      "name": "email",
+      "label": "Email",
+      "width": "33%"
+    },
+    {
+      "name": "phone",
+      "label": "Phone",
+      "width": "33%"
+    }
+  ],
+  "data": [
+    {
+      "id": 1,
+      "email": "Willow_Kassulke91@gmail.com",
+      "phone": "1-196-138-6202 x30775"
+    },
+    ...
+  ],
+  "pagination": {
+    "currentPage": 1,
+    "nextPage": 2,
+    "prevPage": 1,
+    "lastPage": 50,
+    "total": 50,
+    "totalPages": 5,
+    "lastPageUrl": "?page=5", // optional
+    "nextPageUrl": "?page=2", // optional
+    "prevPageUrl": "?page=1", // optional
+    "from": 1,
+    "to": 10
+  }
+}
+```
+
+This example will create a table with 3 columns: id, name, email.
+Usable classes for generating this kind of response on the server-side comming up soon.
 
 ## Build
 
