@@ -45,7 +45,7 @@ Choose whatever component you need:
 
 | Component               | Events                         |
 | ----------------------- | ------------------------------ |
-| <datatable-perpage/>    | perPageChanged                 |
+| `<datatable-perpage/>`  | perPageChanged                 |
 | <datatable-search/>     | searching                      |
 | <datatable/>            | gettingRecords, recordsFetched |
 | <datatable-loader/>     | loading                        |
