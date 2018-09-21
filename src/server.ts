@@ -1,6 +1,6 @@
 import * as Koa from 'koa';
 import * as Router from 'koa-router';
-import Datatables from './classes/Datatables';
+import { datatables } from './exporter';
 
 const app = new Koa;
 const router = new Router;
@@ -9,13 +9,13 @@ router.get('/people', async (ctx: any, next: any): Promise<any> => {
     ctx.set('Access-Control-Allow-Origin', 'http://localhost:8080');
     let inputs = ctx.request.query;
     
-    let datatables = await Datatables;
+    let dt = await datatables();
 
-    // datatables.of('test_peoples').only(['name', 'email']);
-    datatables.of('test_peoples').hide(['id', 'name']);
-    datatables.setInputs(inputs);
+    // dt.of('test_peoples').only(['name', 'email']);
+    dt.of('test_peoples').hide(['id', 'name']);
+    dt.setInputs(inputs);
 
-    ctx.body = await datatables.make();
+    ctx.body = await dt.make();
 });
 
 app.use(router.routes());

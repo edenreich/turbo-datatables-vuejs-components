@@ -3,7 +3,7 @@ import { Paginator } from "./Paginator";
 import { Options } from "./Options";
 import { Column } from "./Column";
 
-class Datatables
+export class Datatables
 {
     private db: Database;
 
@@ -111,7 +111,4 @@ class Datatables
     }
 }
 
-export default Database.connect().then((db) => {
-    return new Datatables(db);
-});
-
+export default Datatables;
