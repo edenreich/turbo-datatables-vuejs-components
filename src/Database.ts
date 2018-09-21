@@ -1,5 +1,4 @@
-import * as mysql from 'mysql';
-import { Connection } from 'mysql';
+import { Connection, createConnection } from 'mysql';
 
 export class Database
 {
@@ -9,7 +8,7 @@ export class Database
 
     private constructor()
     {
-        this.connection = mysql.createConnection({
+        this.connection = createConnection({
             host     : process.env.TEST_DB_HOST || 'localhost',
             user     : process.env.TEST_DB_USER || 'root',
             password : process.env.TEST_DB_PASSWORD || '',
