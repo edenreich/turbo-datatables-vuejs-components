@@ -1,13 +1,15 @@
 {
-  "name": "edenreich-datatables",
+  "name": "turbo-datatables",
   "version": "1.0.0",
-  "description": "an easy way to use datatables with vuejs",
+  "description": "An easy way to use datatables with vuejs",
   "author": "Eden Reich <eden.reich@gmail.com>",
   "private": true,
+  "main": "src/dist/Datatables.js",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "build": "node build/build.js",
+    "dist": "webpack --progress --hide-modules --config build/webpack.dist.conf.js",
     "demo-server": "nodemon --exec ts-node --compiler typescript src/server.ts",
     "seed-data": "ts-node --compiler typescript src/Seeder.ts"
   },
@@ -58,6 +60,7 @@
     "rimraf": "^2.6.0",
     "semver": "^5.3.0",
     "shelljs": "^0.7.6",
+    "ts-loader": "^3.5.0",
     "ts-node": "^7.0.1",
     "typescript": "^3.0.3",
     "uglifyjs-webpack-plugin": "^1.1.1",
