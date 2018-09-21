@@ -8,7 +8,7 @@ import DatatablePerPage from './components/DatatablePerPage.vue';
 import DatatableLoader from './components/DatatableLoader.vue';
 import DatatableHead from './components/DatatableHead.vue';
 import DatatableBody from './components/DatatableBody.vue';
-import DatatableFooter from '././components/DatatableFooter.vue';
+import DatatableFooter from './components/DatatableFooter.vue';
 import DatatablePagination from './components/DatatablePagination.vue';
 
 export const components = { 
