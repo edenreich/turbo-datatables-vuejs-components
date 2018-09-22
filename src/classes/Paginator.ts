@@ -1,21 +1,26 @@
 
 export class Paginator
 {
-    private items: Array<object>;
+    private items: object[];
     private total: number;
     private perPage: number;
     private current: number;
     private prev: number;
     private next: number;
 
-    constructor(items: Array<object>, total: number, perPage: number, currentPage?: number)
+    constructor(items?: object[], total?: number, perPage?: number, currentPage?: number)
+    {
+        this.paginate(items, total, perPage, currentPage);
+    }
+
+    public paginate(items: object[], total: number, perPage: number, currentPage?: number): void
     {
         this.items = items;
         this.total = total;
         this.perPage = perPage;
-        this.current = currentPage;
-        this.prev = (currentPage <= 1) ? currentPage : currentPage-1;
-        this.next = (currentPage >= this.getTotalPages()) ? this.getTotalPages() : currentPage+1;
+        this.current = currentPage || 1;
+        this.prev = (currentPage <= 1) ? currentPage : currentPage - 1;
+        this.next = (currentPage >= this.getTotalPages()) ? this.getTotalPages() : currentPage + 1;
     }
 
     public getTotal(): number
@@ -75,7 +80,7 @@ export class Paginator
         };
     }
 
-    public getItems(): Array<object>
+    public getItems(): object[]
     {
         return this.items;
     }

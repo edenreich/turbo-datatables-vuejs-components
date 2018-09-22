@@ -2,22 +2,27 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
+    target: 'node',
+    context: path.resolve("src"),
     node: {
-        fs: "empty",
-        net: "empty",
-        tls: "empty"
+        setImmediate: false,
+        dgram: 'empty',
+        fs: 'empty',
+        net: true,
+        tls: 'empty',
+        child_process: 'empty'
     },
     entry: {
-        main: path.resolve(__dirname, '../src/exporter.ts'),
+        main: './exporter.ts',
     },
     resolve: {
-        extensions: [ ".js", ".ts", ".vue" ]
+        extensions: [ ".js", ".ts" ]
     },
     output: {
         library: 'datatables',
         libraryTarget: 'commonjs2',
         publicPath: "/",
-        path: path.resolve(__dirname, '../src/dist'),
+        path: path.resolve(__dirname, '../dist'),
         filename: 'Datatables.js'
     },
     module: {
@@ -25,13 +30,6 @@ module.exports = {
             {
                 test: /\.ts$/,
                 loader: 'ts-loader'
-            },
-            {
-                test: /\.vue$/,
-                loader: 'vue-loader',
-                options: {
-                    esModule: true
-                }
             }
         ]
     }

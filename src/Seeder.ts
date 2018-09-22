@@ -7,14 +7,14 @@ export class Seeder
 
     protected records;
 
-    constructor(database: Database, records: number)
+    constructor(db: Database, records: number)
     {
-        this.db = database;
+        this.db = db;
         this.records = records;
 
-        this.db.query(` 
+        this.db.query(`
             CREATE TABLE IF NOT EXISTS test_peoples(
-            id int AUTO_INCREMENT, 
+            id int AUTO_INCREMENT,
             name varchar(100) NOT NULL,
             email varchar(100) NOT NULL,
             phone varchar(100) NOT NULL,
@@ -27,10 +27,10 @@ export class Seeder
     {
         this.db.query('TRUNCATE TABLE test_peoples;');
 
-        let sql = 'INSERT INTO test_peoples (name, email, phone) VALUES (?, ?, ?);';
-        
+        const sql = 'INSERT INTO test_peoples (name, email, phone) VALUES (?, ?, ?);';
+
         for (let i = 1; i <= this.records; i++) {
-            var data = [faker.name.findName(), faker.internet.email(), faker.phone.phoneNumber()];
+            const data = [faker.name.findName(), faker.internet.email(), faker.phone.phoneNumber()];
             await this.db.query(sql, data);
         }
 
@@ -38,9 +38,9 @@ export class Seeder
     }
 }
 
-const records: number = parseInt(process.argv[2]);
+const records: number = parseInt(process.argv[2], 10);
 
-Database.connect().then(db => {
-    const seeder: Seeder = new Seeder(db, records);
+Database.connect().then(conn => {
+    const seeder: Seeder = new Seeder(new Database(conn), records);
     seeder.seed();
 });

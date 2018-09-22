@@ -4,7 +4,15 @@
         "tslint:recommended"
     ],
     "jsRules": {},
+    "brace-style": ["error", "allman"],
     "rules": {
+        "one-line": false,
+        "new-parens": false,
+        "trailing-comma": "never",
+        "max-line-length": { 
+            "options": [ 100 ] 
+        },
+        "no-console": [ true, "warning" ],
         "quotemark": [
             true,
             "single"
@@ -15,8 +23,16 @@
         "interface-name": [
             false
         ],
+        "no-shadowed-variable": false,
         "arrow-parens": false,
-        "object-literal-sort-keys": false
+        "object-literal-sort-keys": false,
+        "ordered-imports": false,
+        "member-ordering": false
     },
-    "rulesDirectory": []
+    "linterOptions": {
+        "exclude": [
+            "./src/dist/**/*",
+            "./node_modules/**/*"
+        ]
+    }
 }

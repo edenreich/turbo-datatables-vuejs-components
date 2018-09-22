@@ -31,58 +31,35 @@
 </template>
 
 <script>
-import DatatableWrapper from './components/DatatableWrapper.vue';
-import Datatable from './components/Datatable.vue';
-import DatatableHeader from './components/DatatableHeader.vue';
-import DatatableSearch from './components/DatatableSearch.vue';
-import DatatablePerPage from './components/DatatablePerPage.vue';
-import DatatableLoader from './components/DatatableLoader.vue';
-import DatatableHead from './components/DatatableHead.vue';
-import DatatableBody from './components/DatatableBody.vue';
-import DatatableFooter from './components/DatatableFooter.vue';
-import DatatablePagination from './components/DatatablePagination.vue';
-
 export default {
-    components: {
-        'datatable-wrapper': DatatableWrapper,
-        'datatable': Datatable,
-        'datatable-header': DatatableHeader,
-        'datatable-search': DatatableSearch,
-        'datatable-perpage': DatatablePerPage,
-        'datatable-loader': DatatableLoader,
-        'datatable-head': DatatableHead,
-        'datatable-body': DatatableBody,
-        'datatable-footer': DatatableFooter,
-        'datatable-pagination': DatatablePagination
-    },
-    data() {
-      return {
-        loading: true,
-        records: [],
-        columns: [],
-        perPage: [ '10', '20', '30' ],
-        requestData: {
-          page: 1,
-          draw: 0,
-          limit: 10,
-          search: '',
-          column: 0,
-          direction: 'desc'
-        },
-        pagination: {
-          lastPage: null,
-          currentPage: null,
-          nextPage: null,
-          prevPage: null,
-          total: null,
-          totalPages: null,
-          lastPageUrl: '',
-          nextPageUrl: '',
-          prevPageUrl: '',
-          from: null,
-          to: null
-        }
+  data() {
+    return {
+      loading: true,
+      records: [],
+      columns: [],
+      perPage: [ '10', '20', '30' ],
+      requestData: {
+        page: 1,
+        draw: 0,
+        limit: 10,
+        search: '',
+        column: 0,
+        direction: 'desc'
+      },
+      pagination: {
+        lastPage: null,
+        currentPage: null,
+        nextPage: null,
+        prevPage: null,
+        total: null,
+        totalPages: null,
+        lastPageUrl: '',
+        nextPageUrl: '',
+        prevPageUrl: '',
+        from: null,
+        to: null
       }
+    }
   },
   methods: {
     onPerPageChanged(limit) {
