@@ -14,6 +14,32 @@ Reference: https://datatables.net/examples/styling/bootstrap4
 
 > By leveraging of server-side pagination we gain a preformance advantange.
 
+
+## Quickstart
+Inside the vue project run:
+```sh
+npm i turbo-datatables
+```
+
+Inside main.js file or the js file entry point where your vue app starts add:
+```javascript
+import Vue from 'vue'
+import App from './App'
+import Datatables from 'turbo-datatables'
+
+Vue.use(Datatables); // This line of code will make the components available in your app.
+
+Vue.config.productionTip = false
+
+new Vue({
+  el: '#app',
+  components: { App },
+  template: '<App/>'
+})
+```
+
+You are all set, look at usage to apply the components.
+
 ## Usage
 
 Choose whatever component you need:
