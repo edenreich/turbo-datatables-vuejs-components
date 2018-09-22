@@ -1,4 +1,4 @@
-import * as faker from 'faker';
+const faker = require('Faker'); 
 import { Database } from './Database';
 
 export class Seeder
