@@ -14,6 +14,12 @@
     "demo-server": "nodemon --exec ts-node --compiler typescript src/server.ts",
     "seed-data": "ts-node --compiler typescript src/Seeder.ts"
   },
+  "keywords": [
+    "datatables",
+    "datatables server-side",
+    "datatables typescript",
+    "datatables vuejs"
+  ],
   "dependencies": {
     "axios": "^0.18.0",
     "vue": "^2.5.2"
