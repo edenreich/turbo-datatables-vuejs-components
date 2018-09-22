@@ -1,10 +1,10 @@
 {
   "name": "turbo-datatables",
-  "version": "1.0.3",
+  "version": "1.0.6",
   "description": "An easy way to use datatables with vuejs",
   "author": "Eden Reich <eden.reich@gmail.com>",
   "main": "plugin.js",
-  "types": "dist/typings/Datatables.d.ts",
+  "types": "dist/typings/classes/Datatables.d.ts",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
