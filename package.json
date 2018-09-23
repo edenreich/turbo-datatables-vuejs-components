@@ -1,6 +1,6 @@
 {
-  "name": "turbo-datatables-components",
-  "version": "1.0.7",
+  "name": "turbo-datatables-vuejs-components",
+  "version": "1.0.8",
   "description": "An easy way to use datatables with vuejs",
   "author": "Eden Reich <eden.reich@gmail.com>",
   "main": "plugin.js",
