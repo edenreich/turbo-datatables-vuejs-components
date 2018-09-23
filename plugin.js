@@ -1,4 +1,3 @@
-import { Datatables } from './dist/Datatables';
 import DatatableWrapper from './src/components/DatatableWrapper.vue';
 import Datatable from './src/components/Datatable.vue';
 import DatatableHeader from './src/components/DatatableHeader.vue';
@@ -22,8 +21,6 @@ export const components = {
     DatatableFooter,
     DatatablePagination
 };
-
-export { Datatables };
 
 export default {
     install (Vue) {

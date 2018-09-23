@@ -1,23 +1,17 @@
 {
-  "name": "turbo-datatables",
+  "name": "turbo-datatables-components",
   "version": "1.0.6",
   "description": "An easy way to use datatables with vuejs",
   "author": "Eden Reich <eden.reich@gmail.com>",
   "main": "plugin.js",
-  "types": "dist/typings/classes/Datatables.d.ts",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
-    "build": "node build/build.js",
-    "dist": "webpack --progress --hide-modules --config build/webpack.dist.conf.js",
-    "watch-dist": "webpack --watch --progress --hide-modules --config build/webpack.dist.conf.js",
-    "demo-server": "nodemon --exec ts-node --compiler typescript src/server.ts",
-    "seed-data": "ts-node --compiler typescript src/Seeder.ts"
+    "build": "node build/build.js"
   },
   "keywords": [
     "datatables",
-    "datatables server-side",
-    "datatables typescript",
+    "datatables client-side",
     "datatables vuejs"
   ],
   "dependencies": {
@@ -25,11 +19,6 @@
     "vue": "^2.5.2"
   },
   "devDependencies": {
-    "@types/faker": "^4.1.4",
-    "@types/koa": "^2.0.46",
-    "@types/koa-router": "^7.0.31",
-    "@types/mysql": "^2.15.5",
-    "@types/node": "^10.9.4",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
@@ -52,10 +41,7 @@
     "html-webpack-plugin": "^2.30.1",
     "jest": "^22.0.4",
     "jest-serializer-vue": "^0.3.0",
-    "koa": "^2.5.3",
-    "koa-router": "^7.4.0",
     "lodash": "^4.17.11",
-    "mysql": "^2.16.0",
     "node-notifier": "^5.1.2",
     "nodemon": "^1.18.4",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
@@ -68,8 +54,6 @@
     "semver": "^5.3.0",
     "shelljs": "^0.7.6",
     "ts-loader": "^3.5.0",
-    "ts-node": "^7.0.1",
-    "typescript": "^3.0.3",
     "uglifyjs-webpack-plugin": "^1.1.1",
     "url-loader": "^0.5.8",
     "vue-jest": "^1.0.2",

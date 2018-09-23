@@ -25,9 +25,9 @@ Inside main.js file or the js file entry point where your vue app starts add:
 ```javascript
 import Vue from 'vue'
 import App from './App'
-import Datatables from 'turbo-datatables'
+import DatatablesComponents from 'turbo-datatables'
 
-Vue.use(Datatables); // This line of code will make the components available in your app.
+Vue.use(DatatablesComponents); // This line of code will make the components available in your app.
 
 Vue.config.productionTip = false
 
@@ -38,7 +38,7 @@ new Vue({
 })
 ```
 
-You are all set, look at usage to apply the components.
+You are all set, look at usage to understand how to apply the components.
 
 ## Usage
 
@@ -89,6 +89,8 @@ Choose whatever component you need:
 
 ## Server-Side
 
+For server-side solution please take a look at **[turbo-datatables-response](https://github.com/edenreich/turbo-datatables-response)** NPM package.
+
 > In general the datatable will make an ajax request to the given url and expects a JSON response in the following format:
 ```javascript
 {
@@ -134,22 +136,3 @@ Choose whatever component you need:
 ```
 
 This example will create a table with 3 columns: id, name, email.
-Usable classes for generating this kind of response on the server-side comming up soon.
-
-## Build
-
-Seed dummy data
-```sh
-./datatables seed --records 150
-```
-
-Run demo server
-```sh
-npm run demo-server
-```
-
-## Todo
-
-- [ ] Set config file where the user can put his database configurations.
-- [x] Allow the users to hide columns.
-- [ ] Add action component to allow editing or creation of new records. 
