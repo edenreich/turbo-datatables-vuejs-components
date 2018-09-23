@@ -1,8 +1,8 @@
 <p align="center"><a href="https://datatables.net/examples/styling/bootstrap4"><img src="https://drive.google.com/uc?export=view&id=1BixUms5LUlR6-6TE3tPASyuTE1QtKLC_"></a></p>
 
-# Vue Datatables
+# Vuejs Datatables Components
 
-> Server Side Processing Datatables written with Vuejs Framework.
+> Server Side Processing Datatables Components for Vuejs Framework.
 
 Reference: https://datatables.net/examples/styling/bootstrap4
 
@@ -14,13 +14,13 @@ Reference: https://datatables.net/examples/styling/bootstrap4
 
 > By leveraging of server-side pagination we gain a preformance advantange.
 
-
-## Quickstart
+## Installation
 Inside the vue project run:
 ```sh
 npm i turbo-datatables
 ```
 
+## Quickstart
 Inside main.js file or the js file entry point where your vue app starts add:
 ```javascript
 import Vue from 'vue'
@@ -42,7 +42,7 @@ You are all set, look at usage to understand how to apply the components.
 
 ## Usage
 
-Choose whatever component you need:
+Choose which component you need, the whole structure looks like the following:
 ```html
 <div id="app">
     <datatable-wrapper>
@@ -91,7 +91,8 @@ Choose whatever component you need:
 
 For server-side solution please take a look at **[turbo-datatables-response](https://github.com/edenreich/turbo-datatables-response)** NPM package.
 
-> In general the datatable will make an ajax request to the given url and expects a JSON response in the following format:
+
+> In general the datatable will make an ajax request to the given url and will expect a JSON response in the following format:
 ```javascript
 {
   "columns": [
