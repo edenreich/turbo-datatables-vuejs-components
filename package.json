@@ -1,13 +1,15 @@
 {
   "name": "turbo-datatables-vuejs-components",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "An easy way to use datatables with vuejs",
   "author": "Eden Reich <eden.reich@gmail.com>",
   "main": "plugin.js",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "demo-server": "datatables serve",
+    "seed": "datatables seed --records 5000"
   },
   "keywords": [
     "datatables",
@@ -46,7 +48,7 @@
     "nodemon": "^1.18.4",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
     "ora": "^1.2.0",
-    "portfinder": "^1.0.13",
+    "portfinder": "^1.0.17",
     "postcss-import": "^11.0.0",
     "postcss-loader": "^2.0.8",
     "postcss-url": "^7.2.1",
@@ -54,15 +56,17 @@
     "semver": "^5.3.0",
     "shelljs": "^0.7.6",
     "ts-loader": "^3.5.0",
+    "turbo-datatables-cli": "^1.0.5",
+    "turbo-datatables-response": "^1.0.7",
     "uglifyjs-webpack-plugin": "^1.1.1",
     "url-loader": "^0.5.8",
     "vue-jest": "^1.0.2",
-    "vue-loader": "^13.3.0",
+    "vue-loader": "^13.7.3",
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.5.2",
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.9.0",
-    "webpack-dev-server": "^2.9.1",
+    "webpack-dev-server": "^2.11.3",
     "webpack-merge": "^4.1.0",
     "yargs": "^12.0.2"
   },

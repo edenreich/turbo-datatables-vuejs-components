@@ -5,63 +5,28 @@
         </div>
         <div class="col-sm-12 col-md-7">
             <div class="dataTables_paginate paging_simple_numbers">
-                <div v-if="short">
-                    <ul class="pagination">
-                        <li class="paginate_button page-item" :class="pagination.currentPage === 1 ? 'disabled': ''">
-                            <a class="page-link" :href="pagination.prevPageUrl"
-                                                 :data-dt-idx="pagination.prevPage" 
-                                                 :tabindex="pagination.prevPage"
-                                                 @click.prevent="$emit('prev', $event.target.getAttribute('tabindex'))">Previous</a>
-                        </li>
-                        <li class="paginate_button page-item" :key="pagination.prevPage" 
-                                                              :class="(pagination.currentPage === pagination.prevPage) ? 'active' : ''">
-                            <a class="page-link" :href="'?page='+pagination.prevPage"
-                                                 :data-dt-idx="pagination.prevPage"
-                                                 :tabindex="pagination.prevPage"
-                                                 @click.prevent="$emit('linkClicked', $event.target.getAttribute('tabindex'))">{{ pagination.prevPage }}</a>
-                        </li>
-                        <li class="paginate_button page-item">
-                            <span class="page-link">...</span>
-                        </li>
-                        <li class="paginate_button page-item" :key="pagination.nextPage" 
-                                                              :class="(pagination.currentPage === pagination.nextPage) ? 'active' : ''">
-                            <a class="page-link" :href="'?page='+pagination.nextPage"
-                                                 :data-dt-idx="pagination.nextPage"
-                                                 :tabindex="pagination.nextPage"
-                                                 @click.prevent="$emit('linkClicked', $event.target.getAttribute('tabindex'))">{{ pagination.nextPage }}</a>
-                        </li>
-                        <li class="paginate_button page-item next" :class="pagination.currentPage === pagination.totalPages ? 'disabled': ''">
-                            <a class="page-link" :href="pagination.nextPageUrl" 
-                                                 :data-dt-idx="pagination.nextPage" 
-                                                 :tabindex="pagination.nextPage" 
-                                                 @click.prevent="$emit('next', $event.target.getAttribute('tabindex'))">Next</a>
-                        </li>
-                    </ul>
-                </div>
-                <div v-else>
-                    <ul class="pagination">
-                        <li class="paginate_button page-item" :class="pagination.currentPage === 1 ? 'disabled': ''">
-                            <a class="page-link" :href="pagination.prevPageUrl"
-                                                 :data-dt-idx="pagination.prevPage" 
-                                                 :tabindex="pagination.prevPage"
-                                                 @click.prevent="$emit('prev', $event.target.getAttribute('tabindex'))">Previous</a>
-                        </li>
-                        <li class="paginate_button page-item" v-for="index in pagination.totalPages" 
-                                                              :key="index" 
-                                                              :class="(pagination.currentPage === index) ? 'active' : ''">
-                            <a class="page-link" :href="'?page='+index"
-                                                 :data-dt-idx="index"
-                                                 :tabindex="index"
-                                                 @click.prevent="$emit('linkClicked', $event.target.getAttribute('tabindex'))">{{ index }}</a>
-                        </li>
-                        <li class="paginate_button page-item next" :class="pagination.currentPage === pagination.totalPages ? 'disabled': ''">
-                            <a class="page-link" :href="pagination.nextPageUrl" 
-                                                 :data-dt-idx="pagination.nextPage" 
-                                                 :tabindex="pagination.nextPage" 
-                                                 @click.prevent="$emit('next', $event.target.getAttribute('tabindex'))">Next</a>
-                        </li>
-                    </ul>
-                </div>
+                <ul class="pagination">
+                    <li class="paginate_button page-item" :class="pagination.currentPage === 1 ? 'disabled': ''">
+                        <a class="page-link" :href="pagination.prevPageUrl"
+                                                :data-dt-idx="pagination.prevPage" 
+                                                :tabindex="pagination.prevPage"
+                                                @click.prevent="$emit('prev', $event.target.getAttribute('tabindex'))">Previous</a>
+                    </li>
+
+                    <li class="paginate_button page-item" v-for="linkItem in linkItems" :key="linkItem.page" :class="{ 'active': linkItem.active }">
+                        <span class="page-link" v-if="linkItem.name === 'separator'">...</span>
+                        <a v-else class="page-link" :href="linkItem.url"
+                                                    :data-dt-idx="linkItem.page"
+                                                    :tabindex="linkItem.page"
+                                                    @click.prevent="$emit('linkClicked', $event.target.getAttribute('tabindex'))">{{ linkItem.name }}</a>
+                    </li>
+                    <li class="paginate_button page-item next" :class="pagination.currentPage === pagination.totalPages ? 'disabled': ''">
+                        <a class="page-link" :href="pagination.nextPageUrl" 
+                                                :data-dt-idx="pagination.nextPage" 
+                                                :tabindex="pagination.nextPage" 
+                                                @click.prevent="$emit('next', $event.target.getAttribute('tabindex'))">Next</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
@@ -77,6 +42,57 @@ export default {
         short: {
             type: Boolean,
             default: false
+        }
+    },
+    computed: {
+        linkItems() {
+            let linkItems = [];
+
+            if (this.short) {
+                if (this.pagination.currentPage > 10) {
+                    linkItems.push({
+                        url: '?page='+1,
+                        page: 1,
+                        name: 1
+                    });
+                }
+                linkItems.push({
+                    url: this.pagination.prevPageUrl,
+                    page: this.pagination.prevPage,
+                    name: this.pagination.prevPage,
+                    active: this.pagination.currentPage === this.pagination.prevPage
+                });
+                if (this.pagination.currentPage != 1 && this.pagination.currentPage != this.pagination.totalPages) {
+                    linkItems.push({
+                        url: '?page='+this.pagination.currentPage,
+                        page: this.pagination.currentPage,
+                        name: this.pagination.currentPage,
+                        active: true
+                    });
+                }
+                linkItems.push({
+                    url: 0,
+                    page: 0,
+                    name: 'separator'
+                });
+                linkItems.push({
+                    url: this.pagination.lastPageUrl,
+                    page: this.pagination.lastPage,
+                    name: this.pagination.lastPage,
+                    active: this.pagination.currentPage === this.pagination.lastPage
+                });
+            } else {
+                for (let i = 1; i <= this.pagination.lastPage; i++) {
+                    linkItems.push({
+                        url: '?page='+i,
+                        page: i,
+                        name: i,
+                        active: this.pagination.currentPage === i
+                    });
+                }
+            }
+
+            return linkItems;
         }
     }
 }
