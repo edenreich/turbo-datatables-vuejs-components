@@ -57,7 +57,7 @@
     "shelljs": "^0.7.6",
     "ts-loader": "^3.5.0",
     "turbo-datatables-cli": "^1.0.5",
-    "turbo-datatables-response": "^1.0.4",
+    "turbo-datatables-response": "^1.0.6",
     "uglifyjs-webpack-plugin": "^1.1.1",
     "url-loader": "^0.5.8",
     "vue-jest": "^1.0.2",
