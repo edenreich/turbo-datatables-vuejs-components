@@ -7,7 +7,7 @@
                 </datatable-perpage>
                 <datatable-search @searching="onSearch"></datatable-search>
             </datatable-header>
-            <datatable url="http://localhost:3000/people" 
+            <datatable url="http://localhost:3000/users" 
                         :data="requestData"
                         @gettingRecords="onGettingRecords"
                         @recordsFetched="onRecordsFetched">

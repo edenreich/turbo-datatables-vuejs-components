@@ -137,3 +137,9 @@ For server-side solution please take a look at **[turbo-datatables-response](htt
 ```
 
 This example will create a table with 3 columns: id, name, email.
+
+## Todo
+
+- [ ] Add possiblity to inject different style themes.
+- [ ] Add action buttons component for CRUD operations per record.
+- [ ] Add action buttons component for CRUD operations per selection.
