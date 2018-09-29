@@ -20,10 +20,6 @@ export default {
         records: {
             type: Array,
             default: {}
-        },
-        columns: {
-            type: Array,
-            default: {}
         }
     }
 }
