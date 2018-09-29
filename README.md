@@ -60,8 +60,7 @@ Choose which component you need, the whole structure looks like the following:
                 <datatable-head :columns="columns" 
                                 @columnClicked="onColumnClicked">
                 </datatable-head>
-                <datatable-body :records="records">
-                </datatable-body>
+                <datatable-body :records="records"></datatable-body>
                 <datatable-footer :columns="columns"></datatable-footer>
         </datatable>
         <datatable-pagination :short="pagination.totalPages > 10 ? true : false"
