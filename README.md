@@ -81,7 +81,6 @@ Choose which component you need, the whole structure looks like the following:
 | `<datatable-perpage/>`    | perPageChanged                 |
 | `<datatable-search/>`     | searching                      |
 | `<datatable/>`            | gettingRecords, recordsFetched |
-| `<datatable-loader/>`     | loading                        |
 | `<datatable-head/>`       | columnClicked                  |
 | `<datatable-pagination/>` | prev, next, linkClicked        |
 
