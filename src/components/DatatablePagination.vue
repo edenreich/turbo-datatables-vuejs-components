@@ -8,9 +8,9 @@
                 <ul class="pagination">
                     <li class="paginate_button page-item" :class="pagination.currentPage === 1 ? 'disabled': ''">
                         <a class="page-link" :href="pagination.prevPageUrl"
-                                                :data-dt-idx="pagination.prevPage" 
-                                                :tabindex="pagination.prevPage"
-                                                @click.prevent="$emit('prev', $event.target.getAttribute('tabindex'))">Previous</a>
+                                             :data-dt-idx="pagination.prevPage" 
+                                             :tabindex="pagination.prevPage"
+                                             @click.prevent="$emit('prev', $event.target.getAttribute('tabindex'))">Previous</a>
                     </li>
 
                     <li class="paginate_button page-item" v-for="linkItem in linkItems" :key="linkItem.page" :class="{ 'active': linkItem.active }">
@@ -22,9 +22,9 @@
                     </li>
                     <li class="paginate_button page-item next" :class="pagination.currentPage === pagination.totalPages ? 'disabled': ''">
                         <a class="page-link" :href="pagination.nextPageUrl" 
-                                                :data-dt-idx="pagination.nextPage" 
-                                                :tabindex="pagination.nextPage" 
-                                                @click.prevent="$emit('next', $event.target.getAttribute('tabindex'))">Next</a>
+                                             :data-dt-idx="pagination.nextPage" 
+                                             :tabindex="pagination.nextPage" 
+                                             @click.prevent="$emit('next', $event.target.getAttribute('tabindex'))">Next</a>
                     </li>
                 </ul>
             </div>
