@@ -23,8 +23,7 @@ export default {
       required: true
     }
   },
-  async created() {
-    this.getRecords(this.url);
+  created() {    
     this.$watch('data.page', value => this.getRecords(this.url));
     this.$watch('data.limit', value => this.getRecords(this.url));
     this.$watch('data.direction', value => this.getRecords(this.url));
@@ -38,23 +37,37 @@ export default {
         this.search(this.url);
       }  
     }, 500));
+
+    try {
+      this.getRecords(this.url);
+    } catch (err) {
+      console.log(err);
+    }
   },
   methods: {
     async getRecords(url) {
       this.$emit('gettingRecords');
 
-      const response = await axios.get(url, { params: this.data });
-      this.$emit('recordsFetched', response.data);
-      
-      return response.data;
+      try {
+        const response = await axios.get(url, { params: this.data });
+        this.$emit('recordsFetched', response.data);
+        
+        return Promise.resolve(response.data);
+      } catch (err) {
+        return Promise.reject('Could not fetch records from the server.');
+      }
     },
     async search(url) {
       this.$emit('gettingRecords');
-
-      const response = await axios.get(url, { params: { search: this.data.search, column: this.data.column } })
-      this.$emit('recordsFetched', response.data);
       
-      return response.data;
+      try {
+        const response = await axios.get(url, { params: { search: this.data.search, column: this.data.column } })
+        this.$emit('recordsFetched', response.data);
+        
+        return Promise.resolve(response.data);
+      } catch (err) {
+        return Promise.reject('Could not fetch searched record from the server.');
+      }
     }
   }
 }
