@@ -24,50 +24,36 @@ export default {
     }
   },
   async created() {
-    let response = await this.getRecords(this.url);
-    this.$emit('recordsFetched', response);
-
-    this.$watch('data.page', async (value) => {
-      let response = await this.getRecords(this.url)
-      this.$emit('recordsFetched', response);
-    });
-
-    this.$watch('data.limit', async (value) => {
-      let response = await this.getRecords(this.url)
-      this.$emit('recordsFetched', response);
-    });
+    this.getRecords(this.url);
+    this.$watch('data.page', value => this.getRecords(this.url));
+    this.$watch('data.limit', value => this.getRecords(this.url));
+    this.$watch('data.direction', value => this.getRecords(this.url));
 
     // Just so we won't over kill the server timeout for 
     // search typing is set to 500 miliseconds.
-    this.$watch('data.search', _.debounce(async (value) => {
+    this.$watch('data.search', _.debounce(value => {
       if (value === '') {
-        let response = await this.getRecords(this.url)
-        this.$emit('recordsFetched', response);
-        return;
-      }
-
-      let response = await this.search(this.url);
-      this.$emit('recordsFetched', response);
+        this.getRecords(this.url)
+      } else {
+        this.search(this.url);
+      }  
     }, 500));
-
-    this.$watch('data.direction', async (value) => {
-      let response = await this.getRecords(this.url);
-      this.$emit('recordsFetched', response);
-    });
   },
   methods: {
     async getRecords(url) {
       this.$emit('gettingRecords');
 
       const response = await axios.get(url, { params: this.data });
-
+      this.$emit('recordsFetched', response.data);
+      
       return response.data;
     },
     async search(url) {
       this.$emit('gettingRecords');
 
       const response = await axios.get(url, { params: { search: this.data.search, column: this.data.column } })
-
+      this.$emit('recordsFetched', response.data);
+      
       return response.data;
     }
   }
