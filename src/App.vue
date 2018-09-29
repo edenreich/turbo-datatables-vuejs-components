@@ -15,9 +15,7 @@
                     <datatable-head :columns="columns" 
                                     @columnClicked="onColumnClicked">
                     </datatable-head>
-                    <datatable-body :columns="columns" 
-                                    :records="records">
-                    </datatable-body>
+                    <datatable-body :records="records"></datatable-body>
                     <datatable-footer :columns="columns"></datatable-footer>
             </datatable>
             <datatable-pagination :short="pagination.totalPages > 10 ? true : false"

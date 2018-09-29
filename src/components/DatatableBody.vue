@@ -4,12 +4,12 @@
             v-for="(record, index) in records" 
             :key="index" 
             :class="index % 2 === 0 ? 'even': 'odd'">
-            <td v-for="(column, index) in columns" :key="index">{{ record[column.name] }}</td>
+            <td v-for="(prop, index) in record" :key="index">{{ prop }}</td>
         </tr>
     </tbody>
     <tbody v-else>
         <tr>
-            <td class="text-center" :colspan="columns.length">No matching records found</td>
+            <td class="text-center" colspan="100%">No matching records found</td>
         </tr>
     </tbody>
 </template>
