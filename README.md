@@ -17,7 +17,7 @@ Reference: https://datatables.net/examples/styling/bootstrap4
 ## Installation
 Inside the vue project run:
 ```sh
-npm i turbo-datatables
+npm i turbo-datatables-vuejs-components
 ```
 
 ## Quickstart
