@@ -44,7 +44,7 @@ You are all set, look at usage to understand how to apply the components.
 
 Choose which component you need, the whole structure looks like the following:
 ```html
-<div id="app">
+<template>
     <datatable-wrapper>
         <datatable-header>
             <datatable-perpage :perPage="perPage" 
@@ -70,7 +70,63 @@ Choose which component you need, the whole structure looks like the following:
                               @linkClicked="requestData.page = arguments[0]">
         </datatable-pagination>
     </datatable-wrapper>
-</div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      loading: true,
+      records: [],
+      columns: [],
+      perPage: [ '10', '20', '30' ],
+      requestData: {
+        page: 1,
+        draw: 0,
+        limit: 10,
+        search: '',
+        column: 0,
+        direction: 'desc'
+      },
+      pagination: {
+        lastPage: null,
+        currentPage: null,
+        nextPage: null,
+        prevPage: null,
+        total: null,
+        totalPages: null,
+        lastPageUrl: '',
+        nextPageUrl: '',
+        prevPageUrl: '',
+        from: null,
+        to: null
+      }
+    }
+  },
+  methods: {
+    onPerPageChanged(limit) {
+      this.requestData.limit = limit;
+      this.$emit
+    },
+    onSearch(term) {
+      this.requestData.search = term;
+    },
+    onColumnClicked(column, direction) {
+      this.requestData.direction = direction;
+      this.requestData.column = column;
+    },
+    onGettingRecords() {
+      this.loading = true;
+    },
+    onRecordsFetched(response) {
+      this.columns = response.columns;
+      this.records = response.data;
+      this.pagination = response.pagination || {};
+      this.loading = false;
+    }
+  }
+}
+</script>
 ```
 
 ## Components Events
