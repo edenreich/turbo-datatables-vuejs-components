@@ -22,17 +22,25 @@ export const components = {
     DatatablePagination
 };
 
-export default {
-    install (Vue) {
-        Vue.component('datatable-wrapper', components.DatatableWrapper);
-        Vue.component('datatable', components.Datatable);
-        Vue.component('datatable-header', components.DatatableHeader);
-        Vue.component('datatable-search', components.DatatableSearch);
-        Vue.component('datatable-perpage', components.DatatablePerPage);
-        Vue.component('datatable-loader', components.DatatableLoader);
-        Vue.component('datatable-head', components.DatatableHead);
-        Vue.component('datatable-body', components.DatatableBody);
-        Vue.component('datatable-footer', components.DatatableFooter);
-        Vue.component('datatable-pagination', components.DatatablePagination);
-    }
+export function install (Vue) {
+    if (install.installed) true;
+
+    install.installed = true;
+
+    Vue.component('datatable-wrapper', components.DatatableWrapper);
+    Vue.component('datatable', components.Datatable);
+    Vue.component('datatable-header', components.DatatableHeader);
+    Vue.component('datatable-search', components.DatatableSearch);
+    Vue.component('datatable-perpage', components.DatatablePerPage);
+    Vue.component('datatable-loader', components.DatatableLoader);
+    Vue.component('datatable-head', components.DatatableHead);
+    Vue.component('datatable-body', components.DatatableBody);
+    Vue.component('datatable-footer', components.DatatableFooter);
+    Vue.component('datatable-pagination', components.DatatablePagination);
 }
+
+export const plugin = {
+	install,
+};
+
+export default plugin;
