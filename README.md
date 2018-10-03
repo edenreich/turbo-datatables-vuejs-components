@@ -48,7 +48,7 @@ Choose which component you need, the whole structure looks like the following:
     <div id="app">
         <datatable-wrapper>
             <datatable-header>
-                <datatable-perpage :per-page="perPage" 
+                <datatable-perpage :perPage="perPage" 
                                     @perPageChanged="onPerPageChanged">
                 </datatable-perpage>
                 <datatable-search @searching="onSearch"></datatable-search>
@@ -61,10 +61,12 @@ Choose which component you need, the whole structure looks like the following:
                     <datatable-head :columns="columns" 
                                     @columnClicked="onColumnClicked">
                     </datatable-head>
-                    <datatable-body :records="records" 
-                                    :with-action="true" 
-                                    @del="onDelete"
-                                    @edit="onEdit">
+                    <datatable-body :records="records">
+                      <datatable-action-buttons slot-scope="{ record }"
+                                                :record-id="record.id"
+                                                @edit="onEdit"
+                                                @del="onDelete">
+                      </datatable-action-buttons>
                     </datatable-body>
                     <datatable-footer :columns="columns"></datatable-footer>
             </datatable>
@@ -150,24 +152,26 @@ export default {
 
 ## Components Events Table
 
-| Component                 | Events                          | Description
-| ------------------------- | ------------------------------- |-----------------------------------------
-| `<datatable-perpage/>`    | - perPageChanged                | Whenever per page select input has been changed.
-|                           |                                 |
-| `<datatable-search/>`     | - searching                     | Whenever the user searches, delayed by 500ms.
-|                           |                                 |
-| `<datatable/>`            | - gettingRecords                | Before sending the ajax.
-|                           | - recordsFetched                | After records retrieved.
-|                           | - del                           | Delete button has been clicked.
-|                           | - edit                          | Edit button has been clicked.
-|                           |                                 |
-| `<datatable-head/>`       | - columnClicked                 | Whenever the user clicks the column name.
-|                           |                                 | search is applied on the clicked column.
-|                           |                                 |
-| `<datatable-pagination/>` | - prev                          | User clicked previous.
-|                           | - next                          | User clicked next.
-|                           | - linkClicked                   | User clicked on a link number.
-|                           |                                 |
+| Component                     | Events                          | Description
+| ----------------------------- | ------------------------------- |-----------------------------------------
+| `<datatable-perpage/>`        | - perPageChanged                | Whenever per page select input has been changed.
+|                               |                                 |
+| `<datatable-search/>`         | - searching                     | Whenever the user searches, delayed by 500ms.
+|                               |                                 |
+| `<datatable/>`                | - gettingRecords                | Before sending the ajax.
+|                               | - recordsFetched                | After records retrieved.
+|                               | - del                           | Delete button has been clicked.
+|                               | - edit                          | Edit button has been clicked.
+|                               |                                 |
+| `<datatable-head/>`           | - columnClicked                 | Whenever the user clicks the column name.
+|                               |                                 | search is applied on the clicked column.
+|                               |                                 |
+| `<datatable-pagination/>`     | - prev                          | User clicked previous.
+|                               | - next                          | User clicked next.
+|                               | - linkClicked                   | User clicked on a link number.
+|                               |                                 |
+| `<datatable-action-buttons/>` | - edit                          | User clicked on edit button.
+|                               | - del                           | User clicked on delete button.
 
 
 ## Server-Side
