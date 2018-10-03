@@ -1,1 +1,9 @@
+/test
+/static
+/build
+/config
+/src/server.ts
+/.vscode
 tsconfig.json
+.editorconfig
+index.html
