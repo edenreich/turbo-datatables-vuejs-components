@@ -15,10 +15,12 @@
                     <datatable-head :columns="columns" 
                                     @columnClicked="onColumnClicked">
                     </datatable-head>
-                    <datatable-body :records="records" 
-                                    :with-action="true" 
-                                    @del="onDelete"
-                                    @edit="onEdit">
+                    <datatable-body :records="records">
+                      <datatable-action-buttons slot-scope="{ record }"
+                                                :record-id="record.id"
+                                                @edit="onEdit"
+                                                @del="onDelete">
+                      </datatable-action-buttons>
                     </datatable-body>
                     <datatable-footer :columns="columns"></datatable-footer>
             </datatable>
