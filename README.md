@@ -48,33 +48,33 @@ Choose which component you need, the whole structure looks like the following:
     <div id="app">
         <datatable-wrapper>
             <datatable-header>
-                <datatable-perpage :perPage="perPage" 
-                                    @perPageChanged="onPerPageChanged">
-                </datatable-perpage>
-                <datatable-search @searching="onSearch"></datatable-search>
+              <datatable-perpage :per-page="perPage" 
+                                  @perPageChanged="onPerPageChanged">
+              </datatable-perpage>
+              <datatable-search @searching="onSearch"></datatable-search>
             </datatable-header>
             <datatable url="http://localhost:3000/users" 
                        :data="requestData"
                        @gettingRecords="onGettingRecords"
                        @recordsFetched="onRecordsFetched">
-                    <datatable-loader :loading="loading"></datatable-loader>
-                    <datatable-head :columns="columns" 
-                                    @columnClicked="onColumnClicked">
-                    </datatable-head>
-                    <datatable-body :records="records">
-                      <datatable-action-buttons slot-scope="{ record }"
-                                                :record-id="record.id"
-                                                @edit="onEdit"
-                                                @del="onDelete">
-                      </datatable-action-buttons>
-                    </datatable-body>
-                    <datatable-footer :columns="columns"></datatable-footer>
+              <datatable-loader :loading="loading"></datatable-loader>
+              <datatable-head :columns="columns" 
+                              @columnClicked="onColumnClicked">
+              </datatable-head>
+              <datatable-body :records="records">
+                <datatable-action-buttons slot-scope="{ record }"
+                                          :record-id="record.id"
+                                          @edit="onEdit"
+                                          @del="onDelete">
+                </datatable-action-buttons>
+              </datatable-body>
+              <datatable-footer :columns="columns"></datatable-footer>
             </datatable>
             <datatable-pagination :short="pagination.totalPages > 10 ? true : false"
                                   :pagination="pagination"
-                                  @prev="requestData.page = arguments[0]"
-                                  @next="requestData.page = arguments[0]"
-                                  @linkClicked="requestData.page = arguments[0]">
+                                  @prev="onPaginate"
+                                  @next="onPaginate"
+                                  @linkClicked="onPaginate">
             </datatable-pagination>
         </datatable-wrapper>
     </div>
