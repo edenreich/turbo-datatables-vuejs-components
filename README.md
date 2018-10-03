@@ -160,8 +160,6 @@ export default {
 |                               |                                 |
 | `<datatable/>`                | - gettingRecords                | Before sending the ajax.
 |                               | - recordsFetched                | After records retrieved.
-|                               | - del                           | Delete button has been clicked.
-|                               | - edit                          | Edit button has been clicked.
 |                               |                                 |
 | `<datatable-head/>`           | - columnClicked                 | Whenever the user clicks the column name.
 |                               |                                 | search is applied on the clicked column.
