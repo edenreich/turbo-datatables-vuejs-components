@@ -83,7 +83,6 @@ export default {
       this.records = response.data;
       this.pagination = response.pagination || {};
       this.loading = false;
-      this.trigger = false;
     },
     onDelete(id, reload) {
       // Send an ajax request to the server for deleting a record
