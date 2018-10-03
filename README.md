@@ -45,31 +45,37 @@ You are all set, look at usage to understand how to apply the components.
 Choose which component you need, the whole structure looks like the following:
 ```html
 <template>
-    <datatable-wrapper>
-        <datatable-header>
-            <datatable-perpage :perPage="perPage" 
-                               @perPageChanged="onPerPageChanged">
-            </datatable-perpage>
-            <datatable-search @searching="onSearch"></datatable-search>
-        </datatable-header>
-        <datatable url="http://localhost:3000/people" 
-                   :data="requestData"
-                   @gettingRecords="onGettingRecords"
-                   @recordsFetched="onRecordsFetched">
-                <datatable-loader :loading="loading"></datatable-loader>
-                <datatable-head :columns="columns" 
-                                @columnClicked="onColumnClicked">
-                </datatable-head>
-                <datatable-body :records="records"></datatable-body>
-                <datatable-footer :columns="columns"></datatable-footer>
-        </datatable>
-        <datatable-pagination :short="pagination.totalPages > 10 ? true : false"
-                              :pagination="pagination"
-                              @prev="requestData.page = arguments[0]"
-                              @next="requestData.page = arguments[0]"
-                              @linkClicked="requestData.page = arguments[0]">
-        </datatable-pagination>
-    </datatable-wrapper>
+    <div id="app">
+        <datatable-wrapper>
+            <datatable-header>
+                <datatable-perpage :per-page="perPage" 
+                                    @perPageChanged="onPerPageChanged">
+                </datatable-perpage>
+                <datatable-search @searching="onSearch"></datatable-search>
+            </datatable-header>
+            <datatable url="http://localhost:3000/users" 
+                       :data="requestData"
+                       @gettingRecords="onGettingRecords"
+                       @recordsFetched="onRecordsFetched">
+                    <datatable-loader :loading="loading"></datatable-loader>
+                    <datatable-head :columns="columns" 
+                                    @columnClicked="onColumnClicked">
+                    </datatable-head>
+                    <datatable-body :records="records" 
+                                    :with-action="true" 
+                                    @del="onDelete"
+                                    @edit="onEdit">
+                    </datatable-body>
+                    <datatable-footer :columns="columns"></datatable-footer>
+            </datatable>
+            <datatable-pagination :short="pagination.totalPages > 10 ? true : false"
+                                  :pagination="pagination"
+                                  @prev="requestData.page = arguments[0]"
+                                  @next="requestData.page = arguments[0]"
+                                  @linkClicked="requestData.page = arguments[0]">
+            </datatable-pagination>
+        </datatable-wrapper>
+    </div>
 </template>
 
 <script>
@@ -82,7 +88,6 @@ export default {
       perPage: [ '10', '20', '30' ],
       requestData: {
         page: 1,
-        draw: 0,
         limit: 10,
         search: '',
         column: 0,
@@ -123,21 +128,46 @@ export default {
       this.records = response.data;
       this.pagination = response.pagination || {};
       this.loading = false;
+      this.trigger = false;
+    },
+    onDelete(id, reload) {
+      // Send an ajax request to the server for deleting a record
+      // And finally invoke reload() for refreshing the table.
+
+      reload();
+    },
+    onEdit(id, reload) {
+      // open a modal form for editing a specific record perhaps..
+      // when form is submited, send a request to the server to modify the record.
+      // finally do remember to invoke reload();
+      
+      reload();
     }
   }
 }
 </script>
 ```
 
-## Components Events
+## Components Events Table
 
-| Component                 | Events                         |
-| ------------------------- | ------------------------------ |
-| `<datatable-perpage/>`    | perPageChanged                 |
-| `<datatable-search/>`     | searching                      |
-| `<datatable/>`            | gettingRecords, recordsFetched |
-| `<datatable-head/>`       | columnClicked                  |
-| `<datatable-pagination/>` | prev, next, linkClicked        |
+| Component                 | Events                          | Description
+| ------------------------- | ------------------------------- |-----------------------------------------
+| `<datatable-perpage/>`    | - perPageChanged                | Whenever per page select input has been changed.
+|                           |                                 |
+| `<datatable-search/>`     | - searching                     | Whenever the user searches, delayed by 500ms.
+|                           |                                 |
+| `<datatable/>`            | - gettingRecords                | Before sending the ajax.
+|                           | - recordsFetched                | After records retrieved.
+|                           | - del                           | Delete button has been clicked.
+|                           | - edit                          | Edit button has been clicked.
+|                           |                                 |
+| `<datatable-head/>`       | - columnClicked                 | Whenever the user clicks the column name.
+|                           |                                 | search is applied on the clicked column.
+|                           |                                 |
+| `<datatable-pagination/>` | - prev                          | User clicked previous.
+|                           | - next                          | User clicked next.
+|                           | - linkClicked                   | User clicked on a link number.
+|                           |                                 |
 
 
 ## Server-Side
@@ -194,5 +224,5 @@ This example will create a table with 3 columns: id, name, email.
 ## Todo
 
 - [ ] Add possiblity to inject different style themes.
-- [ ] Add action buttons component for CRUD operations per record.
+- [x] Add action buttons component for CRUD operations per record.
 - [ ] Add action buttons component for CRUD operations per selection.

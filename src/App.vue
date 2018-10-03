@@ -8,14 +8,18 @@
                 <datatable-search @searching="onSearch"></datatable-search>
             </datatable-header>
             <datatable url="http://localhost:3000/users" 
-                        :data="requestData"
-                        @gettingRecords="onGettingRecords"
-                        @recordsFetched="onRecordsFetched">
+                       :data="requestData"
+                       @gettingRecords="onGettingRecords"
+                       @recordsFetched="onRecordsFetched">
                     <datatable-loader :loading="loading"></datatable-loader>
                     <datatable-head :columns="columns" 
                                     @columnClicked="onColumnClicked">
                     </datatable-head>
-                    <datatable-body :records="records"></datatable-body>
+                    <datatable-body :records="records" 
+                                    :with-action="true" 
+                                    @del="onDelete"
+                                    @edit="onEdit">
+                    </datatable-body>
                     <datatable-footer :columns="columns"></datatable-footer>
             </datatable>
             <datatable-pagination :short="pagination.totalPages > 10 ? true : false"
@@ -38,7 +42,6 @@ export default {
       perPage: [ '10', '20', '30' ],
       requestData: {
         page: 1,
-        draw: 0,
         limit: 10,
         search: '',
         column: 0,
@@ -79,6 +82,20 @@ export default {
       this.records = response.data;
       this.pagination = response.pagination || {};
       this.loading = false;
+      this.trigger = false;
+    },
+    onDelete(id, reload) {
+      // Send an ajax request to the server for deleting a record
+      // And finally invoke reload() for refreshing the table.
+
+      reload();
+    },
+    onEdit(id, reload) {
+      // open a modal form for editing a specific record perhaps..
+      // when form is submited, send a request to the server to modify the record.
+      // finally do remember to invoke reload();
+      
+      reload();
     }
   }
 }

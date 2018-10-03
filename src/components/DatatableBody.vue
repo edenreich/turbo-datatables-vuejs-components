@@ -5,6 +5,11 @@
             :key="index" 
             :class="index % 2 === 0 ? 'even': 'odd'">
             <td v-for="(prop, index) in record" :key="index">{{ prop }}</td>
+            <datatable-action-buttons v-if="withAction" 
+                                      :record-id="record.id"
+                                      @edit="$emit('edit', arguments[0], arguments[1])"
+                                      @del="$emit('del', arguments[0], arguments[1])">
+            </datatable-action-buttons>
         </tr>
     </tbody>
     <tbody v-else>
@@ -20,6 +25,10 @@ export default {
         records: {
             type: Array,
             default: {}
+        },
+        withAction: {
+            type: Boolean,
+            default: false
         }
     }
 }

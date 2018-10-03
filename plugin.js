@@ -8,6 +8,7 @@ import DatatableHead from './src/components/DatatableHead.vue';
 import DatatableBody from './src/components/DatatableBody.vue';
 import DatatableFooter from './src/components/DatatableFooter.vue';
 import DatatablePagination from './src/components/DatatablePagination.vue';
+import DatatableActionButtons from './src/components/DatatableActionButtons.vue';
 
 export const components = {
     DatatableWrapper,
@@ -19,7 +20,8 @@ export const components = {
     DatatableHead,
     DatatableBody,
     DatatableFooter,
-    DatatablePagination
+    DatatablePagination,
+    DatatableActionButtons
 };
 
 export function install (Vue) {
@@ -37,6 +39,7 @@ export function install (Vue) {
     Vue.component('datatable-body', components.DatatableBody);
     Vue.component('datatable-footer', components.DatatableFooter);
     Vue.component('datatable-pagination', components.DatatablePagination);
+    Vue.component('datatable-action-buttons', components.DatatableActionButtons);
 }
 
 export const plugin = {

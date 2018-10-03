@@ -1,0 +1,34 @@
+<template>
+    <td>
+        <table>
+            <tr>
+                <td><button type="button" class="btn btn-info" @click.prevent="$emit('edit', recordId, reload)">Edit</button></td>
+                <td><button type="button" class="btn btn-danger" @click.prevent="$emit('del', recordId, reload)">Delete</button></td>
+            </tr>
+        </table>
+    </td>
+</template>
+
+<script>
+import { EventBus } from '../main.js';
+
+export default {
+    props: {
+        recordId: {
+            type: Number,
+            required: true
+        }
+    },
+    methods: {
+        reload() {
+            EventBus.$emit('reload');
+        }
+    }
+}
+</script>
+
+
+<style scoped>
+
+</style>
+
