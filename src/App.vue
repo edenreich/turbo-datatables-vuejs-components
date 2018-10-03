@@ -65,7 +65,6 @@ export default {
   methods: {
     onPerPageChanged(limit) {
       this.requestData.limit = limit;
-      this.$emit
     },
     onSearch(term) {
       this.requestData.search = term;
