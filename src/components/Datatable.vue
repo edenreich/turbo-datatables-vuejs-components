@@ -11,7 +11,6 @@
 <script>
 import axios from 'axios';
 import _ from 'lodash';
-import { EventBus } from '../main.js';
 
 export default {
   props: {
@@ -28,8 +27,6 @@ export default {
     this.$watch('data.page', value => this.getRecords(this.url));
     this.$watch('data.limit', value => this.getRecords(this.url));
     this.$watch('data.direction', value => this.getRecords(this.url));
-
-    EventBus.$on('reload', () => this.getRecords(this.url));
 
     // Just so we won't over kill the server timeout for 
     // search typing is set to 500 miliseconds.
@@ -49,6 +46,8 @@ export default {
   },
   methods: {
     async getRecords(url) {
+      url = url || this.url;
+
       this.$emit('gettingRecords');
 
       try {

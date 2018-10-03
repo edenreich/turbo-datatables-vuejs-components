@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import { EventBus } from '../main.js';
 
 export default {
     props: {
@@ -21,7 +20,7 @@ export default {
     },
     methods: {
         reload() {
-            EventBus.$emit('reload');
+            this.$parent.$parent.getRecords();
         }
     }
 }

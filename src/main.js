@@ -8,8 +8,6 @@ Vue.use(Datatables);
 
 Vue.config.productionTip = false;
 
-export const EventBus = new Vue({});
-
 new Vue({
   el: '#app',
   components: { App },
