@@ -1,5 +1,5 @@
 <template>
-    <div class="row">
+    <div class="row" v-if="pagination">
         <div class="col-sm-12 col-md-5">
             <div class="dataTables_info" role="status" aria-live="polite">Showing {{ pagination.from || '0' }} to {{ pagination.to || '0' }} of {{ pagination.total || '0' }} entries</div>
         </div>
@@ -37,7 +37,8 @@ export default {
     props: {
         pagination: {
             type: Object,
-            required: true
+            required: true,
+            default: () => {}
         },
         short: {
             type: Boolean,

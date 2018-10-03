@@ -11,7 +11,7 @@ export default {
     props: {
         columns: {
             type: Array,
-            default: []
+            default: () => []
         }
     }
 }

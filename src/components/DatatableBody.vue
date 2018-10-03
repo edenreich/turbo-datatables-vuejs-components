@@ -24,7 +24,7 @@ export default {
     props: {
         records: {
             type: Array,
-            default: {}
+            default: () => []
         },
         withAction: {
             type: Boolean,
