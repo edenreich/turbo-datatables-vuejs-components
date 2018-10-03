@@ -2,7 +2,7 @@
     <div id="app">
         <datatable-wrapper>
             <datatable-header>
-                <datatable-perpage :perPage="perPage" 
+                <datatable-perpage :per-page="perPage" 
                                     @perPageChanged="onPerPageChanged">
                 </datatable-perpage>
                 <datatable-search @searching="onSearch"></datatable-search>
