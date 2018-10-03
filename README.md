@@ -113,7 +113,6 @@ export default {
   methods: {
     onPerPageChanged(limit) {
       this.requestData.limit = limit;
-      this.$emit
     },
     onSearch(term) {
       this.requestData.search = term;
@@ -130,7 +129,9 @@ export default {
       this.records = response.data;
       this.pagination = response.pagination || {};
       this.loading = false;
-      this.trigger = false;
+    },
+    onPaginate(page) {
+      this.requestData.page = page;
     },
     onDelete(id, reload) {
       // Send an ajax request to the server for deleting a record
