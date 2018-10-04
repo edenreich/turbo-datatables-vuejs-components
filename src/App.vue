@@ -50,7 +50,7 @@ export default {
     onGettingRecords() {
       //
     },
-    onRecordsFetched({columns, datsa, pagination}) {
+    onRecordsFetched({columns, data, pagination}) {
       //
     },
     onPaginate(page) {
