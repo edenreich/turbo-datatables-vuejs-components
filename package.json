@@ -1,6 +1,6 @@
 {
   "name": "turbo-datatables-vuejs-components",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "description": "An easy way to use datatables with vuejs",
   "author": "Eden Reich <eden.reich@gmail.com>",
   "main": "plugin",
@@ -12,7 +12,9 @@
     "seed": "datatables seed --records 5000"
   },
   "keywords": [
+    "datatable",
     "datatables",
+    "datatables node",
     "datatables laravel",
     "datatables client-side",
     "datatables vuejs"
