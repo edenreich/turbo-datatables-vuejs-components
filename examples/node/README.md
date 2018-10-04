@@ -47,9 +47,6 @@ Create server.js file:
 const Koa = require('koa');
 const router = require('koa-router')();
 
-const Koa = require('koa');
-const app = module.exports = new Koa();
-
 const Datatables = require('turbo-datatables-response');
 
 router.get('/users', async (ctx) => {
