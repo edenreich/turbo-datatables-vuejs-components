@@ -5,7 +5,7 @@
             :key="index" 
             :class="index % 2 === 0 ? 'even': 'odd'">
             <td v-for="(prop, index) in record" :key="index">{{ prop }}</td>
-            <slot :record="record"></slot>
+            <datatable-action-buttons v-if="$parent.$props.options.crud" :record-id="record.id"></datatable-action-buttons>
         </tr>
     </tbody>
     <tbody v-else>

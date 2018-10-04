@@ -45,7 +45,7 @@ export default {
 
             this.active = columnIndex;
 
-            this.$emit('columnClicked', columnIndex, this.dir);
+            this.$parent.$parent.$emit('columnClicked', columnIndex, this.dir);
         }
     }
 }

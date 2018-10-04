@@ -16,26 +16,38 @@ export default {
   props: {
     url: {
       type: String,
-      required: true
+      default: 'http://localhost/users'
     },
-    data: {
+    filter: {
       type: Object,
-      required: true
+      default: () => {
+        return {
+          page: 1,
+          limit: 10,
+          search: '',
+          column: 0,
+          direction: 'desc'
+        }
+      }
+    },
+    options: {
+      type: Object,
+      default: () => {}
     }
   },
   created() {    
-    this.$watch('data.page', value => this.getRecords(this.url));
-    this.$watch('data.limit', value => this.getRecords(this.url));
-    this.$watch('data.direction', value => this.getRecords(this.url));
+    this.$watch('filter.page', value => this.getRecords(this.url));
+    this.$watch('filter.limit', value => this.getRecords(this.url));
+    this.$watch('filter.direction', value => this.getRecords(this.url));
 
     // Just so we won't over kill the server timeout for 
     // search typing is set to 500 miliseconds.
-    this.$watch('data.search', _.debounce(value => {
+    this.$watch('filter.search', _.debounce(value => {
       if (value === '') {
         this.getRecords(this.url)
       } else {
         this.search(this.url);
-      }  
+      }
     }, 500));
 
     try {
@@ -48,11 +60,11 @@ export default {
     async getRecords(url) {
       url = url || this.url;
 
-      this.$emit('gettingRecords');
+      this.$parent.$emit('gettingRecords');
 
       try {
-        const response = await axios.get(url, { params: this.data });
-        this.$emit('recordsFetched', response.data);
+        const response = await axios.get(url, { params: this.filter });
+        this.$parent.$emit('recordsFetched', response.data);
         
         return Promise.resolve(response.data);
       } catch (err) {
@@ -60,11 +72,11 @@ export default {
       }
     },
     async search(url) {
-      this.$emit('gettingRecords');
+      this.$parent.$emit('gettingRecords');
       
       try {
-        const response = await axios.get(url, { params: { search: this.data.search, column: this.data.column } })
-        this.$emit('recordsFetched', response.data);
+        const response = await axios.get(url, { params: { search: this.filter.search, column: this.filter.column } })
+        this.$parent.$emit('recordsFetched', response.data);
         
         return Promise.resolve(response.data);
       } catch (err) {

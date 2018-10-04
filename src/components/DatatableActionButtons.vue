@@ -2,8 +2,8 @@
     <td>
         <table>
             <tr>
-                <td><button type="button" class="btn btn-info" @click.prevent="$emit('edit', recordId, reload)">Edit</button></td>
-                <td><button type="button" class="btn btn-danger" @click.prevent="$emit('del', recordId, reload)">Delete</button></td>
+                <td><button type="button" class="btn btn-info" @click.prevent="$parent.$parent.$parent.$emit('edit', recordId, reload)">Edit</button></td>
+                <td><button type="button" class="btn btn-danger" @click.prevent="$parent.$parent.$parent.$emit('del', recordId, reload)">Delete</button></td>
             </tr>
         </table>
     </td>

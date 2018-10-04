@@ -46,36 +46,29 @@ Choose which component you need, the whole structure looks like the following:
 ```html
 <template>
     <div id="app">
-        <datatable-wrapper>
-            <datatable-header>
-              <datatable-perpage :per-page="perPage" 
-                                  @perPageChanged="onPerPageChanged">
-              </datatable-perpage>
-              <datatable-search @searching="onSearch"></datatable-search>
-            </datatable-header>
-            <datatable url="http://localhost:3000/users" 
-                       :data="requestData"
-                       @gettingRecords="onGettingRecords"
-                       @recordsFetched="onRecordsFetched">
-              <datatable-loader :loading="loading"></datatable-loader>
-              <datatable-head :columns="columns" 
-                              @columnClicked="onColumnClicked">
-              </datatable-head>
-              <datatable-body :records="records">
-                <datatable-action-buttons slot-scope="{ record }"
-                                          :record-id="record.id"
-                                          @edit="onEdit"
-                                          @del="onDelete">
-                </datatable-action-buttons>
-              </datatable-body>
-              <datatable-footer :columns="columns"></datatable-footer>
-            </datatable>
-            <datatable-pagination :short="pagination.totalPages > 10 ? true : false"
-                                  :pagination="pagination"
-                                  @prev="onPaginate"
-                                  @next="onPaginate"
-                                  @linkClicked="onPaginate">
-            </datatable-pagination>
+        <datatable-wrapper @perPageChanged="onPerPageChanged"
+                           @searching="onSearch"
+                           @gettingRecords="onGettingRecords"
+                           @recordsFetched="onRecordsFetched"
+                           @columnClicked="onColumnClicked"
+                           @prev="onPaginate"
+                           @next="onPaginate"
+                           @linkClicked="onPaginate"
+                           @del="onDelete"
+                           @edit="onEdit">
+            <template slot="storage" slot-scope="config">
+              <datatable-header>
+                <datatable-perpage :per-page="['10', '20', '30', '50']"></datatable-perpage>
+                <datatable-search></datatable-search>
+              </datatable-header>
+              <datatable :url="url" :filter="config.filter" :options="options">
+                <datatable-loader :is-loading="config.loading"></datatable-loader>
+                <datatable-head :columns="config.columns"></datatable-head>
+                <datatable-body :records="config.records"></datatable-body>
+                <datatable-footer :columns="config.columns"></datatable-footer>
+              </datatable>
+              <datatable-pagination :pagination="config.pagination"></datatable-pagination>
+            </template>
         </datatable-wrapper>
     </div>
 </template>
@@ -84,54 +77,30 @@ Choose which component you need, the whole structure looks like the following:
 export default {
   data() {
     return {
-      loading: true,
-      records: [],
-      columns: [],
-      perPage: [ '10', '20', '30' ],
-      requestData: {
-        page: 1,
-        limit: 10,
-        search: '',
-        column: 0,
-        direction: 'desc'
-      },
-      pagination: {
-        lastPage: null,
-        currentPage: null,
-        nextPage: null,
-        prevPage: null,
-        total: null,
-        totalPages: null,
-        lastPageUrl: '',
-        nextPageUrl: '',
-        prevPageUrl: '',
-        from: null,
-        to: null
+      url: 'http://localhost:3000/users',
+      options: {
+        crud: true
       }
     }
   },
   methods: {
     onPerPageChanged(limit) {
-      this.requestData.limit = limit;
+      //
     },
     onSearch(term) {
-      this.requestData.search = term;
+      //
     },
     onColumnClicked(column, direction) {
-      this.requestData.direction = direction;
-      this.requestData.column = column;
+      //
     },
     onGettingRecords() {
-      this.loading = true;
+      //
     },
-    onRecordsFetched(response) {
-      this.columns = response.columns;
-      this.records = response.data;
-      this.pagination = response.pagination || {};
-      this.loading = false;
+    onRecordsFetched({columns, datsa, pagination}) {
+      //
     },
     onPaginate(page) {
-      this.requestData.page = page;
+      //
     },
     onDelete(id, reload) {
       // Send an ajax request to the server for deleting a record
@@ -143,7 +112,7 @@ export default {
       // open a modal form for editing a specific record perhaps..
       // when form is submited, send a request to the server to modify the record.
       // finally do remember to invoke reload();
-      
+
       reload();
     }
   }
@@ -155,21 +124,21 @@ export default {
 
 | Component                     | Events                          | Description
 | ----------------------------- | ------------------------------- |-----------------------------------------
-| `<datatable-perpage/>`        | - perPageChanged                | Whenever per page select input has been changed.
+| `<datatable-wrapper/>`        | - perPageChanged                | Whenever per page select input has been changed.
 |                               |                                 |
-| `<datatable-search/>`         | - searching                     | Whenever the user searches, delayed by 500ms.
+|                               | - searching                     | Whenever the user searches, delayed by 500ms.
 |                               |                                 |
-| `<datatable/>`                | - gettingRecords                | Before sending the ajax.
+|                               | - gettingRecords                | Before sending the ajax.
 |                               | - recordsFetched                | After records retrieved.
 |                               |                                 |
-| `<datatable-head/>`           | - columnClicked                 | Whenever the user clicks the column name.
+|                               | - columnClicked                 | Whenever the user clicks the column name.
 |                               |                                 | search is applied on the clicked column.
 |                               |                                 |
-| `<datatable-pagination/>`     | - prev                          | User clicked previous.
+|                               | - prev                          | User clicked previous.
 |                               | - next                          | User clicked next.
 |                               | - linkClicked                   | User clicked on a link number.
 |                               |                                 |
-| `<datatable-action-buttons/>` | - edit                          | User clicked on edit button.
+|                               | - edit                          | User clicked on edit button.
 |                               | - del                           | User clicked on delete button.
 
 

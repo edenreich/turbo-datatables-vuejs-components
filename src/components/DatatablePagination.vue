@@ -10,7 +10,7 @@
                         <a class="page-link" :href="pagination.prevPageUrl"
                                              :data-dt-idx="pagination.prevPage" 
                                              :tabindex="pagination.prevPage"
-                                             @click.prevent="$emit('prev', $event.target.getAttribute('tabindex'))">Previous</a>
+                                             @click.prevent="$parent.$emit('prev', $event.target.getAttribute('tabindex'))">Previous</a>
                     </li>
 
                     <li class="paginate_button page-item" v-for="linkItem in linkItems" :key="linkItem.page" :class="{ 'active': linkItem.active }">
@@ -18,13 +18,13 @@
                         <a v-else class="page-link" :href="linkItem.url"
                                                     :data-dt-idx="linkItem.page"
                                                     :tabindex="linkItem.page"
-                                                    @click.prevent="$emit('linkClicked', $event.target.getAttribute('tabindex'))">{{ linkItem.name }}</a>
+                                                    @click.prevent="$parent.$emit('linkClicked', $event.target.getAttribute('tabindex'))">{{ linkItem.name }}</a>
                     </li>
                     <li class="paginate_button page-item next" :class="pagination.currentPage === pagination.totalPages ? 'disabled': ''">
                         <a class="page-link" :href="pagination.nextPageUrl" 
                                              :data-dt-idx="pagination.nextPage" 
                                              :tabindex="pagination.nextPage" 
-                                             @click.prevent="$emit('next', $event.target.getAttribute('tabindex'))">Next</a>
+                                             @click.prevent="$parent.$emit('next', $event.target.getAttribute('tabindex'))">Next</a>
                     </li>
                 </ul>
             </div>
@@ -42,14 +42,19 @@ export default {
         },
         short: {
             type: Boolean,
-            default: false
+            default: undefined
         }
     },
     computed: {
         linkItems() {
             let linkItems = [];
-
-            if (this.short) {
+            let shouldBeShort = this.pagination.totalPages > 10;
+ 
+            if (typeof this.short !== 'undefined') {
+                shouldBeShort = this.short;
+            }
+            
+            if (shouldBeShort) {
                 if (this.pagination.currentPage > 10) {
                     linkItems.push({
                         url: '?page='+1,

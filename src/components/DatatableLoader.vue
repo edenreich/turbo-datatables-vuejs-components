@@ -1,5 +1,5 @@
 <template>
-    <div v-if="loading">
+    <div v-if="isLoading">
         <div class="overlay"></div>
         <div class="spinner">
             <div class="rect1"></div>
@@ -14,7 +14,7 @@
 <script>
 export default {
     props: {
-        loading: {
+        isLoading: {
             type: Boolean,
             required: true,
             default: true
