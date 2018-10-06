@@ -24,11 +24,11 @@
 
 <script>
 export default {
-    props: {
-        records: {
-            type: Array,
-            default: () => []
-        }
+  props: {
+    records: {
+      type: Array,
+      default: () => []
     }
+  }
 }
 </script>

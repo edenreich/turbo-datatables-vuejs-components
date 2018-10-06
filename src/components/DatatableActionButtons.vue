@@ -20,24 +20,21 @@
 </template>
 
 <script>
-
 export default {
-    props: {
-        recordId: {
-            type: Number,
-            required: true
-        }
-    },
-    methods: {
-        reload() {
-            this.$parent.$parent.getRecords();
-        }
+  props: {
+    recordId: {
+      type: Number,
+      required: true
     }
+  },
+  methods: {
+    reload() {
+      this.$parent.$parent.getRecords();
+    }
+  }
 }
 </script>
-
 
 <style scoped>
 
 </style>
-
