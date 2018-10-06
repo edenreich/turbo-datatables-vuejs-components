@@ -1,14 +1,15 @@
 <template>
   <div id="datatables">
     <div class="dataTables_wrapper dt-bootstrap4">
-      <slot name="storage" :per-page="perPage"
-                           :columns="columns" 
-                           :records="records" 
-                           :loading="loading" 
-                           :filter="filter"
-                           :pagination="pagination">
-      </slot>
-      <slot></slot>
+      <slot
+        :per-page="perPage"
+        :columns="columns"
+        :records="records"
+        :loading="loading"
+        :filter="filter"
+        :pagination="pagination"
+        name="storage" />
+      <slot />
     </div>
   </div>
 </template>

@@ -1,12 +1,22 @@
 <template>
-    <td>
-        <table>
-            <tr>
-                <td><button type="button" class="btn btn-info" @click.prevent="$parent.$parent.$parent.$emit('edit', recordId, reload)">Edit</button></td>
-                <td><button type="button" class="btn btn-danger" @click.prevent="$parent.$parent.$parent.$emit('del', recordId, reload)">Delete</button></td>
-            </tr>
-        </table>
-    </td>
+  <td>
+    <table>
+      <tr>
+        <td>
+          <button
+            type="button"
+            class="btn btn-info"
+            @click.prevent="$parent.$parent.$parent.$emit('edit', recordId, reload)">Edit</button>
+        </td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-danger"
+            @click.prevent="$parent.$parent.$parent.$emit('del', recordId, reload)">Delete</button>
+        </td>
+      </tr>
+    </table>
+  </td>
 </template>
 
 <script>

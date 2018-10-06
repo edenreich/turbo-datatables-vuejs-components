@@ -9,7 +9,8 @@
     "start": "npm run dev",
     "build": "node build/build.js",
     "demo-server": "ts-node --compiler typescript src/server.ts",
-    "seed": "datatables seed --records 5000"
+    "seed": "datatables seed --records 5000",
+    "eslint": "eslint **/*.js **/*.vue"
   },
   "keywords": [
     "datatable",
@@ -41,6 +42,8 @@
     "chalk": "^2.0.1",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.0",
+    "eslint": "^5.6.1",
+    "eslint-plugin-vue": "^4.7.1",
     "extract-text-webpack-plugin": "^3.0.0",
     "faker": "^4.1.0",
     "file-loader": "^1.1.4",
