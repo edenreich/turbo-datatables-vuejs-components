@@ -6,7 +6,7 @@
       <label>Show
         <select
           class="custom-select custom-select-sm form-control form-control-sm"
-          @change="$cloesest('DatatableWrapper').$emit('perPageChanged', $event.target.value)">
+          @change="$closest('DatatableWrapper').$emit('perPageChanged', $event.target.value)">
           <option
             v-for="(records, index) in perPage"
             :key="index"
