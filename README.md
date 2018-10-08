@@ -203,6 +203,23 @@ For server-side solution please take a look at **[turbo-datatables-response](htt
 
 This example will create a table with 3 columns: id, name, email.
 
+## Build
+
+Simply clone the repository and run:
+```sh
+npm install && npm start
+```
+
+make sure you do have a datatabse connection. And your database contains a table called test_users
+
+Finally add the your database connection using the following env variables:
+```sh
+export TEST_DB_HOST "localhost"
+export TEST_DB_USER "root"
+export TEST_DB_PASSWORD ""
+export TEST_DB_DATABASE "test_datatables"
+```
+
 ## Todo
 
 - [x] Add possiblity to inject different style themes.
