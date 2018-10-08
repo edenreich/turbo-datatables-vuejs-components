@@ -15,7 +15,7 @@ Reference: https://datatables.net/examples/styling/bootstrap4
 > By leveraging of server-side pagination we gain a preformance advantange.
 
 ## Installation
-Inside the vue project run:
+In your project run:
 ```sh
 npm i turbo-datatables-vuejs-components
 ```
