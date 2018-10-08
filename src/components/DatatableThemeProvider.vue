@@ -1,11 +1,14 @@
 <template>
-  <div class="theme-provider">
+  <div
+    id="datatableThemeProvider"
+    class="theme-provider">
     <slot />
   </div>
 </template>
 
 <script>
 export default {
+  name: 'DatatableThemeProvider',
   props: {
     name: {
       type: String,
@@ -15,8 +18,7 @@ export default {
   data() {
     return {
       availableThemes: [
-        'bootstrap4',
-
+        'bootstrap4'
       ]
     }
   },

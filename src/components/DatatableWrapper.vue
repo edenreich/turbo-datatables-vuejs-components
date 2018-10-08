@@ -1,5 +1,5 @@
 <template>
-  <div id="datatables">
+  <div id="datatableWrapper">
     <div class="dataTables_wrapper dt-bootstrap4">
       <slot
         :per-page="perPage"
@@ -16,7 +16,16 @@
 
 <script>
 export default {
-  data() {
+  name: 'DatatableWrapper',
+  props: {
+    options: {
+      type: Object,
+      default: () => {
+        crud: false
+      }
+    }
+ },
+ data() {
     return {
       url: 'http://localhost:3000/users',
       loading: true,

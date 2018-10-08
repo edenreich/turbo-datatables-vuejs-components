@@ -1,18 +1,18 @@
 <template>
-  <td>
+  <td class="action-buttons">
     <table>
       <tr>
         <td>
           <button
             type="button"
             class="btn btn-info"
-            @click.prevent="$parent.$parent.$parent.$emit('edit', recordId, reload)">Edit</button>
+            @click.prevent="$closest('DatatableWrapper').$emit('edit', recordId, reload)">Edit</button>
         </td>
         <td>
           <button
             type="button"
             class="btn btn-danger"
-            @click.prevent="$parent.$parent.$parent.$emit('del', recordId, reload)">Delete</button>
+            @click.prevent="$closest('DatatableWrapper').$emit('del', recordId, reload)">Delete</button>
         </td>
       </tr>
     </table>
@@ -21,6 +21,7 @@
 
 <script>
 export default {
+  name: 'DatatableActionButtons',
   props: {
     recordId: {
       type: Number,
@@ -29,7 +30,7 @@ export default {
   },
   methods: {
     reload() {
-      this.$parent.$parent.getRecords();
+      this.$closest('Datatable').getRecords();
     }
   }
 }

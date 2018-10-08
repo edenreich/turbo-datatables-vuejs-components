@@ -1,5 +1,7 @@
 <template>
-  <div class="row">
+  <div
+    id="datatable"
+    class="row">
     <div class="col-sm-12">
       <table
         class="table table-striped table-bordered dataTable"
@@ -16,6 +18,7 @@ import axios from 'axios';
 import _ from 'lodash';
 
 export default {
+  name: 'Datatable',
   props: {
     url: {
       type: String,
@@ -32,10 +35,6 @@ export default {
           direction: 'desc'
         }
       }
-    },
-    options: {
-      type: Object,
-      default: () => {}
     }
   },
   created() {

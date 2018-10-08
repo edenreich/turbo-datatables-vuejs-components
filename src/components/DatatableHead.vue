@@ -1,5 +1,5 @@
 <template>
-  <thead>
+  <thead id="datatableHead">
     <tr role="row">
       <th
         v-for="(column, index) in columns"
@@ -17,6 +17,7 @@
 
 <script>
 export default {
+  name: 'DatatableHead',
   props: {
     columns: {
       type: Array,
@@ -45,7 +46,7 @@ export default {
 
       this.active = columnIndex;
 
-      this.$parent.$parent.$emit('columnClicked', columnIndex, this.dir);
+      this.$closest('DatatableWrapper').$emit('columnClicked', columnIndex, this.dir);
     }
   }
 }

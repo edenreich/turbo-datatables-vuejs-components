@@ -1,5 +1,7 @@
 <template>
-  <tbody v-if="records.length > 0">
+  <tbody
+    v-if="records.length > 0"
+    id="datatableBody">
     <tr
       v-for="(record, index) in records"
       :key="index"
@@ -9,7 +11,7 @@
         v-for="(prop, index) in record"
         :key="index">{{ prop }}</td>
       <datatable-action-buttons
-        v-if="$parent.$props.options.crud"
+        v-if="$closest('DatatableWrapper').$props.options.crud"
         :record-id="record.id" />
     </tr>
   </tbody>
@@ -24,6 +26,7 @@
 
 <script>
 export default {
+  name: 'DatatableBody',
   props: {
     records: {
       type: Array,

@@ -1,6 +1,7 @@
 <template>
   <div
     v-if="pagination"
+    id="datatablePagination"
     class="row">
     <div class="col-sm-12 col-md-5">
       <div
@@ -19,7 +20,7 @@
               :data-dt-idx="pagination.prevPage"
               :tabindex="pagination.prevPage"
               class="page-link"
-              @click.prevent="$parent.$emit('prev', $event.target.getAttribute('tabindex'))">Previous</a>
+              @click.prevent="$closest('DatatableWrapper').$emit('prev', $event.target.getAttribute('tabindex'))">Previous</a>
           </li>
           <li
             v-for="linkItem in linkItems"
@@ -35,7 +36,7 @@
               :data-dt-idx="linkItem.page"
               :tabindex="linkItem.page"
               class="page-link"
-              @click.prevent="$parent.$emit('linkClicked', $event.target.getAttribute('tabindex'))">{{ linkItem.name }}</a>
+              @click.prevent="$closest('DatatableWrapper').$emit('linkClicked', $event.target.getAttribute('tabindex'))">{{ linkItem.name }}</a>
           </li>
           <li
             :class="pagination.currentPage === pagination.totalPages ? 'disabled': ''"
@@ -45,7 +46,7 @@
               :data-dt-idx="pagination.nextPage"
               :tabindex="pagination.nextPage"
               class="page-link"
-              @click.prevent="$parent.$emit('next', $event.target.getAttribute('tabindex'))">Next</a>
+              @click.prevent="$closest('DatatableWrapper').$emit('next', $event.target.getAttribute('tabindex'))">Next</a>
           </li>
         </ul>
       </div>
@@ -55,6 +56,7 @@
 
 <script>
 export default {
+  name: 'DatatablePagination',
   props: {
     pagination: {
       type: Object,

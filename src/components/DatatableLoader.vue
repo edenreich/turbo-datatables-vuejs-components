@@ -1,5 +1,7 @@
 <template>
-  <div v-if="isLoading">
+  <div
+    v-if="isLoading"
+    id="datatableLoader">
     <div class="overlay" />
     <div class="spinner">
       <div class="rect1" />
@@ -13,6 +15,7 @@
 
 <script>
 export default {
+  name: 'DatatableLoader',
   props: {
     isLoading: {
       type: Boolean,

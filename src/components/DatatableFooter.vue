@@ -1,5 +1,5 @@
 <template>
-  <tfoot>
+  <tfoot id="datatableFooter">
     <tr>
       <th
         v-for="column in columns"
@@ -12,6 +12,7 @@
 
 <script>
 export default {
+  name: 'DatatableFooter',
   props: {
     columns: {
       type: Array,

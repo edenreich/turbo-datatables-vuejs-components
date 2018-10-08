@@ -1,12 +1,14 @@
 <template>
-  <div class="col-sm-12 col-md-6">
+  <div
+    id="datatableSearch"
+    class="col-sm-12 col-md-6">
     <div class="dataTables_filter">
       <label>Search:
         <input
           type="search"
           class="form-control form-control-sm"
           placeholder=""
-          @input="$parent.$parent.$emit('searching', $event.target.value)">
+          @input="$closest('DatatableWrapper').$emit('searching', $event.target.value)">
       </label>
     </div>
   </div>
@@ -14,8 +16,6 @@
 
 <script>
 export default {
-  props: {
-
-  }
+  name: 'DatatableSearch'
 }
 </script>

@@ -2,6 +2,7 @@
   <div id="app">
     <datatable-theme-provider name="bootstrap4">
       <datatable-wrapper
+        :options="options"
         @perPageChanged="onPerPageChanged"
         @searching="onSearch"
         @gettingRecords="onGettingRecords"
@@ -21,8 +22,7 @@
           </datatable-header>
           <datatable
             :url="url"
-            :filter="config.filter"
-            :options="options">
+            :filter="config.filter">
             <datatable-loader :is-loading="config.loading" />
             <datatable-head :columns="config.columns" />
             <datatable-body :records="config.records" />

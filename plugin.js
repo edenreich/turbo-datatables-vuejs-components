@@ -32,6 +32,20 @@ export function install (Vue) {
 
   install.installed = true;
 
+  Vue.prototype.$closest = function(name) {
+    let component = this;
+
+    do {
+      if (component.$options.name === name) {
+        break;
+      }
+
+      component = component.$parent;
+    } while (component);
+
+    return component;
+  };
+
   Vue.prototype.$theme = new ThemePicker;
 
   Vue.component('datatable-theme-provider', components.DatatableThemeProvider);
