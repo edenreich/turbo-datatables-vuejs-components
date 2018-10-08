@@ -212,7 +212,7 @@ npm install && npm start
 
 make sure you do have a database connection. And your database contains a table called **test_users**
 
-Finally add the your database connection using the following env variables:
+Finally add your database connection using the following ENV variables:
 ```sh
 export TEST_DB_HOST "localhost"
 export TEST_DB_USER "root"
