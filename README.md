@@ -210,7 +210,7 @@ Simply clone the repository and run:
 npm install && npm start
 ```
 
-make sure you do have a datatabse connection. And your database contains a table called test_users
+make sure you do have a database connection. And your database contains a table called **test_users**
 
 Finally add the your database connection using the following env variables:
 ```sh
