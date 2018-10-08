@@ -1,7 +1,6 @@
 
 interface Theme {
-  [key: string]: string[]|string|any,
-  disabled?: boolean
+  [key: string]: string[]|string|any
 }
 
 export default class ThemePicker
@@ -46,7 +45,6 @@ function selectTheme(hrefs: string[]) {
 
         if (styleTag) {
           const sheet: CSSStyleSheet = <CSSStyleSheet>styleTag.sheet;
-          sheet.disabled = true;
           resolve(sheet);
         }
       };
