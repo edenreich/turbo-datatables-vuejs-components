@@ -9,7 +9,6 @@ In view folder create a simple example.blade.php file:
 <html>
     </head>
         <title>Example Datatable Vuejs</title>
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
     <head>
 
     <body>
