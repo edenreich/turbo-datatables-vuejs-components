@@ -225,3 +225,4 @@ export TEST_DB_DATABASE "test_datatables"
 - [x] Add possiblity to inject different style themes.
 - [x] Add action buttons component for CRUD operations per record.
 - [ ] Add possiblity to create custom themes.
+- [ ] Add possibility to launch a modal with the crud methods.
