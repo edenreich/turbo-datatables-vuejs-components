@@ -25,7 +25,7 @@ Inside main.js file or the js file entry point where your vue app starts add:
 ```javascript
 import Vue from 'vue'
 import App from './App'
-import DatatablesComponents from 'turbo-datatables'
+import DatatablesComponents from 'turbo-datatables-vuejs-components'
 
 Vue.use(DatatablesComponents); // This line of code will make the components available in your app.
 
@@ -46,36 +46,38 @@ Choose which component you need, the whole structure looks like the following:
 ```html
 <template>
   <div id="app">
-    <datatable-wrapper
-      @perPageChanged="onPerPageChanged"
-      @searching="onSearch"
-      @gettingRecords="onGettingRecords"
-      @recordsFetched="onRecordsFetched"
-      @columnClicked="onColumnClicked"
-      @prev="onPaginate"
-      @next="onPaginate"
-      @linkClicked="onPaginate"
-      @del="onDelete"
-      @edit="onEdit">
-      <template
-        slot="storage"
-        slot-scope="config">
-        <datatable-header>
-          <datatable-perpage :per-page="['10', '20', '30', '50']" />
-          <datatable-search />
-        </datatable-header>
-        <datatable
-          :url="url"
-          :filter="config.filter"
-          :options="options">
-          <datatable-loader :is-loading="config.loading" />
-          <datatable-head :columns="config.columns" />
-          <datatable-body :records="config.records" />
-          <datatable-footer :columns="config.columns" />
-        </datatable>
-        <datatable-pagination :pagination="config.pagination" />
-      </template>
-    </datatable-wrapper>
+    <datatable-theme-provider name="bootstrap4">
+      <datatable-wrapper
+        @perPageChanged="onPerPageChanged"
+        @searching="onSearch"
+        @gettingRecords="onGettingRecords"
+        @recordsFetched="onRecordsFetched"
+        @columnClicked="onColumnClicked"
+        @prev="onPaginate"
+        @next="onPaginate"
+        @linkClicked="onPaginate"
+        @del="onDelete"
+        @edit="onEdit">
+        <template
+          slot="storage"
+          slot-scope="config">
+          <datatable-header>
+            <datatable-perpage :per-page="['10', '20', '30', '50']" />
+            <datatable-search />
+          </datatable-header>
+          <datatable
+            :url="url"
+            :filter="config.filter"
+            :options="options">
+            <datatable-loader :is-loading="config.loading" />
+            <datatable-head :columns="config.columns" />
+            <datatable-body :records="config.records" />
+            <datatable-footer :columns="config.columns" />
+          </datatable>
+          <datatable-pagination :pagination="config.pagination" />
+        </template>
+      </datatable-wrapper>
+    </datatable-theme-provider>
   </div>
 </template>
 
@@ -203,6 +205,6 @@ This example will create a table with 3 columns: id, name, email.
 
 ## Todo
 
-- [ ] Add possiblity to inject different style themes.
+- [x] Add possiblity to inject different style themes.
 - [x] Add action buttons component for CRUD operations per record.
 - [ ] Add action buttons component for CRUD operations per selection.

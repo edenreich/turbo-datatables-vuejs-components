@@ -1,35 +1,37 @@
 <template>
   <div id="app">
-    <datatable-wrapper
-      @perPageChanged="onPerPageChanged"
-      @searching="onSearch"
-      @gettingRecords="onGettingRecords"
-      @recordsFetched="onRecordsFetched"
-      @columnClicked="onColumnClicked"
-      @prev="onPaginate"
-      @next="onPaginate"
-      @linkClicked="onPaginate"
-      @del="onDelete"
-      @edit="onEdit">
-      <template
-        slot="storage"
-        slot-scope="config">
-        <datatable-header>
-          <datatable-perpage :per-page="['10', '20', '30', '50']" />
-          <datatable-search />
-        </datatable-header>
-        <datatable
-          :url="url"
-          :filter="config.filter"
-          :options="options">
-          <datatable-loader :is-loading="config.loading" />
-          <datatable-head :columns="config.columns" />
-          <datatable-body :records="config.records" />
-          <datatable-footer :columns="config.columns" />
-        </datatable>
-        <datatable-pagination :pagination="config.pagination" />
-      </template>
-    </datatable-wrapper>
+    <datatable-theme-provider name="bootstrap4">
+      <datatable-wrapper
+        @perPageChanged="onPerPageChanged"
+        @searching="onSearch"
+        @gettingRecords="onGettingRecords"
+        @recordsFetched="onRecordsFetched"
+        @columnClicked="onColumnClicked"
+        @prev="onPaginate"
+        @next="onPaginate"
+        @linkClicked="onPaginate"
+        @del="onDelete"
+        @edit="onEdit">
+        <template
+          slot="storage"
+          slot-scope="config">
+          <datatable-header>
+            <datatable-perpage :per-page="['10', '20', '30', '50']" />
+            <datatable-search />
+          </datatable-header>
+          <datatable
+            :url="url"
+            :filter="config.filter"
+            :options="options">
+            <datatable-loader :is-loading="config.loading" />
+            <datatable-head :columns="config.columns" />
+            <datatable-body :records="config.records" />
+            <datatable-footer :columns="config.columns" />
+          </datatable>
+          <datatable-pagination :pagination="config.pagination" />
+        </template>
+      </datatable-wrapper>
+    </datatable-theme-provider>
   </div>
 </template>
 

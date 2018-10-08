@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+        "dom",
+        "es5",
+        "es6",
+        "es2016"
+    ],
+    "strict": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "allowJs": true,
+    "experimentalDecorators": true
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "files": [
+    "./src/classes/ThemePicker.ts"
+  ]
+}

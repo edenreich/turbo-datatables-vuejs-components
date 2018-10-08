@@ -6,11 +6,12 @@
   "main": "plugin",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev",
+    "start": "npm run demo-server | npm run dev",
     "build": "node build/build.js",
-    "demo-server": "ts-node --compiler typescript src/server.ts",
+    "demo-server": "ts-node --compiler typescript --project config/tsconfig.backend.json src/server.ts",
     "seed": "datatables seed --records 5000",
-    "eslint": "eslint **/*.js **/*.vue"
+    "eslint": "eslint **/*.js **/*.vue",
+    "typescript-watch": "tsc  --project config/tsconfig.frontend.json --watch"
   },
   "keywords": [
     "datatable",
@@ -30,6 +31,7 @@
   "devDependencies": {
     "@types/koa": "^2.0.46",
     "@types/koa-router": "^7.0.32",
+    "@types/node": "^10.11.4",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
