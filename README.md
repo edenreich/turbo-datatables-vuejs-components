@@ -207,4 +207,4 @@ This example will create a table with 3 columns: id, name, email.
 
 - [x] Add possiblity to inject different style themes.
 - [x] Add action buttons component for CRUD operations per record.
-- [ ] Add action buttons component for CRUD operations per selection.
+- [ ] Add possiblity to create custom themes.
