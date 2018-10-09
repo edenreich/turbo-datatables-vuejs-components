@@ -1,20 +1,30 @@
 <template>
-  <div
+  <td
     id="datatablePerPage"
-    class="col-sm-12 col-md-6">
-    <div class="dataTables_length">
-      <label>Show
-        <select
-          class="custom-select custom-select-sm form-control form-control-sm"
-          @change="$closest('DatatableWrapper').$emit('perPageChanged', $event.target.value)">
-          <option
-            v-for="(records, index) in perPage"
-            :key="index"
-            :value="records">{{ records }}</option>
-        </select> entries
-      </label>
-    </div>
-  </div>
+    class="dataTables_length">
+    <table>
+      <tbody>
+        <tr>
+          <td class="align-baseline">
+            <label>Show</label>
+          </td>
+          <td class="align-baseline">
+            <select
+              class="custom-select custom-select-sm form-control form-control-sm"
+              @change="$closest('DatatableWrapper').$emit('perPageChanged', $event.target.value)">
+              <option
+                v-for="(records, index) in perPage"
+                :key="index"
+                :value="records">{{ records }}</option>
+            </select>
+          </td>
+          <td class="align-baseline">
+            <label>entries</label>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
 </template>
 
 <script>

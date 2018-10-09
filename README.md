@@ -48,6 +48,7 @@ Choose which component you need, the whole structure looks like the following:
   <div id="app">
     <datatable-theme-provider name="bootstrap4">
       <datatable-wrapper
+        :options="options"
         @perPageChanged="onPerPageChanged"
         @searching="onSearch"
         @gettingRecords="onGettingRecords"
@@ -56,19 +57,20 @@ Choose which component you need, the whole structure looks like the following:
         @prev="onPaginate"
         @next="onPaginate"
         @linkClicked="onPaginate"
-        @del="onDelete"
-        @edit="onEdit">
+        @create="onCreate"
+        @edit="onEdit"
+        @del="onDelete">
         <template
           slot="storage"
           slot-scope="config">
           <datatable-header>
             <datatable-perpage :per-page="['10', '20', '30', '50']" />
+            <datatable-create-button />
             <datatable-search />
           </datatable-header>
           <datatable
             :url="url"
-            :filter="config.filter"
-            :options="options">
+            :filter="config.filter">
             <datatable-loader :is-loading="config.loading" />
             <datatable-head :columns="config.columns" />
             <datatable-body :records="config.records" />
@@ -110,18 +112,26 @@ export default {
     onPaginate(page) {
       console.log('Page was changed:', page);
     },
-    onDelete(id, reload) {
-      // Send an ajax request to the server for deleting a record
-      // And finally invoke reload() for refreshing the table.
-      console.log(`Deleting record ${id}...`);
+    onCreate(reload) {
+      // open a modal form for creating a record
+      // when the form is submited, send a request to the server to create the record.
+      // finally do remember to invoke reload();
+      console.log(`Creating a record...`);
 
       reload();
     },
     onEdit(id, reload) {
-      // open a modal form for editing a specific record perhaps..
-      // when form is submited, send a request to the server to modify the record.
+      // open a modal form for editing a specific record
+      // when the form is submited, send a request to the server to modify the record.
       // finally do remember to invoke reload();
       console.log(`Editing record ${id}...`);
+
+      reload();
+    },
+    onDelete(id, reload) {
+      // Send an ajax request to the server for deleting a record
+      // And finally invoke reload() for refreshing the table.
+      console.log(`Deleting record ${id}...`);
 
       reload();
     }

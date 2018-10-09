@@ -1,17 +1,27 @@
 <template>
-  <div
+  <td
     id="datatableSearch"
-    class="col-sm-12 col-md-6">
-    <div class="dataTables_filter">
-      <label>Search:
-        <input
-          type="search"
-          class="form-control form-control-sm"
-          placeholder=""
-          @input="$closest('DatatableWrapper').$emit('searching', $event.target.value)">
-      </label>
-    </div>
-  </div>
+    class="dataTables_filter">
+    <table width="100%">
+      <tbody>
+        <tr>
+          <td class="align-baseline">
+            <div class="text-right">
+              <label>Search:</label>
+            </div>
+          </td>
+          <td class="align-baseline">
+            <div class="form-group">
+              <input
+                type="search"
+                class="form-control form-control-sm pull-right"
+                @input="$closest('DatatableWrapper').$emit('searching', $event.target.value)">
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
 </template>
 
 <script>

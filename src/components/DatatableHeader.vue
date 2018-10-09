@@ -2,7 +2,15 @@
   <div
     id="datatableHeader"
     class="row">
-    <slot />
+    <div class="col-sm-12">
+      <table
+        role="grid"
+        style="width: 100%;">
+        <tr>
+          <slot />
+        </tr>
+      </table>
+    </div>
   </div>
 </template>
 

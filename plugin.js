@@ -10,6 +10,7 @@ import DatatableBody from './src/components/DatatableBody.vue';
 import DatatableFooter from './src/components/DatatableFooter.vue';
 import DatatablePagination from './src/components/DatatablePagination.vue';
 import DatatableActionButtons from './src/components/DatatableActionButtons.vue';
+import DatatableCreateButton from './src/components/DatatableCreateButton.vue';
 import ThemePicker from './src/classes/ThemePicker';
 
 export const components = {
@@ -24,7 +25,8 @@ export const components = {
   DatatableBody,
   DatatableFooter,
   DatatablePagination,
-  DatatableActionButtons
+  DatatableActionButtons,
+  DatatableCreateButton
 };
 
 export function install (Vue) {
@@ -32,6 +34,7 @@ export function install (Vue) {
 
   install.installed = true;
 
+  // Look up and finds the parent by name.
   Vue.prototype.$closest = function(name) {
     let component = this;
 
@@ -44,6 +47,18 @@ export function install (Vue) {
     } while (component);
 
     return component;
+  };
+
+  // Drill down the components recursively until it finds the name.
+  Vue.prototype.$find = function(name) {
+    for (let i = 0; i < this.$children.length; i++) {
+      if (this.$children[i].$options.name !== name) {
+        this.$children[i].$find(name);
+        continue;
+      }
+
+      return this.$children[i];
+    }
   };
 
   Vue.prototype.$theme = new ThemePicker;
@@ -60,6 +75,7 @@ export function install (Vue) {
   Vue.component('datatable-footer', components.DatatableFooter);
   Vue.component('datatable-pagination', components.DatatablePagination);
   Vue.component('datatable-action-buttons', components.DatatableActionButtons);
+  Vue.component('datatable-create-button', components.DatatableCreateButton);
 }
 
 export const plugin = {
