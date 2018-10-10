@@ -11,6 +11,10 @@ import DatatableFooter from './src/components/DatatableFooter.vue';
 import DatatablePagination from './src/components/DatatablePagination.vue';
 import DatatableActionButtons from './src/components/DatatableActionButtons.vue';
 import DatatableCreateButton from './src/components/DatatableCreateButton.vue';
+import DatatableModal from './src/components/DatatableModal.vue';
+import DatatableCreateModal from './src/components/DatatableCreateModal.vue';
+import DatatableEditModal from './src/components/DatatableEditModal.vue';
+import DatatableDeleteModal from './src/components/DatatableDeleteModal.vue';
 import ThemePicker from './src/classes/ThemePicker';
 
 export const components = {
@@ -26,7 +30,11 @@ export const components = {
   DatatableFooter,
   DatatablePagination,
   DatatableActionButtons,
-  DatatableCreateButton
+  DatatableCreateButton,
+  DatatableModal,
+  DatatableCreateModal,
+  DatatableEditModal,
+  DatatableDeleteModal
 };
 
 export function install (Vue) {
@@ -76,6 +84,10 @@ export function install (Vue) {
   Vue.component('datatable-pagination', components.DatatablePagination);
   Vue.component('datatable-action-buttons', components.DatatableActionButtons);
   Vue.component('datatable-create-button', components.DatatableCreateButton);
+  Vue.component('datatable-modal', components.DatatableModal);
+  Vue.component('datatable-create-modal', components.DatatableCreateModal);
+  Vue.component('datatable-edit-modal', components.DatatableEditModal);
+  Vue.component('datatable-delete-modal', components.DatatableDeleteModal);
 }
 
 export const plugin = {

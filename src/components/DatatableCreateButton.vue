@@ -6,7 +6,7 @@
     <button
       type="button"
       class="btn btn-primary"
-      @click.prevent="$closest('DatatableWrapper').$emit('create', reload)">New</button>
+      @click.prevent="$closest('DatatableWrapper').$emit('create', modal, reload)">New</button>
   </td>
 </template>
 
@@ -15,6 +15,9 @@ export default {
   methods: {
     reload() {
       this.$closest('DatatableWrapper').$find('Datatable').getRecords();
+    },
+    modal(options) {
+      this.$closest('DatatableWrapper').$find('DatatableModal').showModal('create', options);
     }
   }
 }

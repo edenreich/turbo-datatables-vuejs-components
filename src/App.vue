@@ -17,6 +17,7 @@
         <template
           slot="storage"
           slot-scope="config">
+          <datatable-modal />
           <datatable-header>
             <datatable-perpage :per-page="['10', '20', '30', '50']" />
             <datatable-create-button />
@@ -66,28 +67,53 @@ export default {
     onPaginate(page) {
       console.log('Page was changed:', page);
     },
-    onCreate(reload) {
+    async onCreate(modal, reload) {
       // open a modal form for creating a record
       // when the form is submited, send a request to the server to create the record.
       // finally do remember to invoke reload();
-      console.log(`Creating a record...`);
 
-      reload();
+      modal({
+        confirmed: (inputs) => {
+          console.log(`Creating a record...`);
+          // const response = await axios.get('/create');
+          reload();
+        },
+        canceled: () => {
+          console.log(`Creating a record was canceled...`);
+        }
+      });
+
     },
-    onEdit(id, reload) {
+    async onEdit(id, modal, reload) {
       // open a modal form for editing a specific record
       // when the form is submited, send a request to the server to modify the record.
       // finally do remember to invoke reload();
-      console.log(`Editing record ${id}...`);
 
-      reload();
+      modal({
+        confirmed: (inputs) => {
+          console.log(`Editing record ${id}...`);
+          // const response = await axios.get('/update');
+          reload();
+        },
+        canceled: () => {
+          console.log(`Editing record ${id} was canceled...`);
+        }
+      });
     },
-    onDelete(id, reload) {
+    async onDelete(id, prompt, reload) {
       // Send an ajax request to the server for deleting a record
       // And finally invoke reload() for refreshing the table.
-      console.log(`Deleting record ${id}...`);
 
-      reload();
+      prompt({
+        confirmed: () => {
+          console.log(`Deleting record ${id}...`);
+          // const response = await axios.get('/delete');
+          reload();
+        },
+        canceled: () => {
+          console.log(`Deleting record ${id} was canceled...`);
+        }
+      });
     }
   }
 }
