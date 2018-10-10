@@ -121,7 +121,7 @@ export default {
       modal({
         confirmed: (inputs) => {
           console.log(`Creating a record...`);
-          // const response = await axios.get('/create');
+          // const response = await axios.post('/create');
           reload();
         },
         canceled: () => {
@@ -138,7 +138,7 @@ export default {
       modal({
         confirmed: (inputs) => {
           console.log(`Editing record ${id}...`);
-          // const response = await axios.get('/update');
+          // const response = await axios.put('/update');
           reload();
         },
         canceled: () => {
@@ -153,7 +153,7 @@ export default {
       prompt({
         confirmed: () => {
           console.log(`Deleting record ${id}...`);
-          // const response = await axios.get('/delete');
+          // const response = await axios.delete('/delete');
           reload();
         },
         canceled: () => {
