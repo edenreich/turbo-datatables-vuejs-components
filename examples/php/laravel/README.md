@@ -32,9 +32,9 @@ Controller should look like this:
 
 ```php
 
-namespace App\Http;
+namespace App\Http\Controllers;
 
-use Illuminate\Http\Request
+use Illuminate\Http\Request;
 
 use App\User;
 
