@@ -34,6 +34,8 @@ Controller should look like this:
 
 namespace App\Http;
 
+use Illuminate\Http\Request
+
 use App\User;
 
 class UserManagementController
@@ -52,9 +54,10 @@ class UserManagementController
    * This Method will be called per ajax 
    * via the supplied url for the datatable component.
    * 
+   * @param \Illuminate\Http\Request $request
    * @return \Illuminate\Http\JsonResponse
    */ 
-  public function show() 
+  public function show(Request $request) 
   {
     $columns = ['id', 'name', 'image', 'type', 'updated_at', 'created_at'];
 
