@@ -1,49 +1,3 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
-
-# What will you need ?
-
-## Quick Start
-
-1) Clone the following code.
-2) run `composer install && npm install`
-3) run `php artisan migrate --seed`.
-4) run `php artisan serve` and open the browser on http://127.0.0.1:8000/
-
-Notice: if you see error on the console, do make sure your application is connected to the database.
-
-
-
-You can also follow the following instruction to set it up on existing project:
-
-## Client-Side
-
-In view folder create a simple example.blade.php file:
-```html
-<html>
-    </head>
-        <title>Example Datatable Vuejs</title>
-    <head>
-
-    <body>
-        <div id="app">
-            <!-- Vue app.js Content -->
-        </div>
-        <script src="{{ asset('js/app.js') }}"></script>
-    </body>
-</html>
-```
-
-## Server-Side
-
-Routes should look like this:
-```php
-Route::get('/', 'UserManagementController@index');
-Route::get('/users', 'UserManagementController@show');
-```
-
-Controller should look like this:
-
-```php
 <?php
 
 namespace App\Http\Controllers;
@@ -118,6 +72,3 @@ class UserManagementController
     ]);
   }
 }
-```
-
-Finally your Vue JS transpiled file should look like in the example on the repository index readme.

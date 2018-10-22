@@ -4,6 +4,7 @@
 /config
 /src/server.ts
 /.vscode
+/examples
 tsconfig.json
 .editorconfig
 index.html
