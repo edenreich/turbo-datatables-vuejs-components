@@ -4,17 +4,25 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
+
+use App\Repository\UserRepository;
 
 class UserManagementController extends AbstractController
 {
     /**
-     * @Route("/user/management", name="user_management")
+     * @Route("/", name="index", methods={"GET"})
      */
     public function index()
     {
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/UserManagementController.php',
-        ]);
+        return $this->render('example.html.twig');
+    }
+
+    /**
+     * @Route("/users", name="user_management", methods={"GET"})
+     */
+    public function show(Request $request, UserRepository $user)
+    {
+
     }
 }
