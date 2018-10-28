@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "encore dev --watch"
+  },
+  "devDependencies": {
+    "@symfony/webpack-encore": "^0.20.1",
+    "vue": "^2.5.17",
+    "vue-loader": "^14.2.3",
+    "vue-template-compiler": "^2.5.17"
+  },
+  "dependencies": {
+    "turbo-datatables-vuejs-components": "^1.0.23"
+  }
+}
